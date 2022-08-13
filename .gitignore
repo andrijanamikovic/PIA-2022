@@ -1,0 +1,9 @@
+
+*.map
+*.ps1
+backend/node_modules/.bin/atob
+*.cmd
+backend/node_modules/
+frontend/node_modules/
+backend/dist/
+frontend/dist/
