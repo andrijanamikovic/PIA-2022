@@ -1,4 +1,8 @@
-<table>
+<body>
+<table class="logIn">
+    <tr>
+        <h2 class="library">Library</h2>
+    </tr>
     <tr>
         <td>Username: </td>
         <td>
@@ -18,7 +22,14 @@
     </tr>
 
 </table>
+<div *ngIf="message" class="error">
+    {{message}}
+</div>
 
-{{message}}
 
-Click here to <a routerLink="/register">register</a>
+<div class="register">
+    Click here to <a routerLink="/register"> register</a>
+</div>
+
+
+</body>

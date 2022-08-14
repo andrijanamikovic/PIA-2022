@@ -4,13 +4,15 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { ModeratorComponent } from './moderator/moderator.component';
 import { ReaderComponent } from './reader/reader.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
   {path:"admin", component: AdminComponent},
   {path:"moderator", component: ModeratorComponent},
-  {path:"reader", component: ReaderComponent}
+  {path:"reader", component: ReaderComponent},
+  {path:"register", component: RegisterComponent}
 ];
 
 @NgModule({

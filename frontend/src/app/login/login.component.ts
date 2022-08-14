@@ -24,8 +24,10 @@ export class LoginComponent implements OnInit {
       if (userFromDB!=null){
         if (userFromDB.type ==0){
           this.router.navigate(['reader']);
-        } else {
+        } else if (userFromDB.type == 1) {
           this.router.navigate(['admin']);
+        } else if (userFromDB.type==2){
+          this.router.navigate(['moderator']);
         }
       } else {
         this.message =  "error"
