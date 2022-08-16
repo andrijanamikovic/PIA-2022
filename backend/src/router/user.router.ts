@@ -7,4 +7,8 @@ userRouter.route('/login').post(
     (req, res)=> new UserController().login(req, res)
 )
 
+userRouter.route('/adminlogin').post(
+    (req, res)=> new UserController().login(req, res)
+)
+
 export default userRouter;
