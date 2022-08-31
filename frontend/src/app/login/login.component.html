@@ -1,16 +1,20 @@
-<body>
+<div class = "header">
+    LIBRARY
+</div>
+
+<br/>
+<br/>
+
+<body class = "wrapper">
 <table class="logIn">
     <tr>
-        <h2 class="library">Library</h2>
-    </tr>
-    <tr>
-        <td>Username: </td>
+        <td class="name">Username: </td>
         <td>
             <input type="text" name = "username" [(ngModel)]="username">
         </td>
     </tr>
     <tr>
-        <td>Password: </td>
+        <td class="name">Password: </td>
         <td>
             <input type="password" name = "password" [(ngModel)]="password">
         </td>
@@ -20,16 +24,21 @@
             <button (click)="login()">LogIn</button>
         </td>
     </tr>
-
+    <div class="register">
+        Click here to <a routerLink="/register"> REGISTER</a>
+    </div>
 </table>
+
+
+
 <div *ngIf="message" class="error">
     {{message}}
 </div>
 
-
-<div class="register">
-    Click here to <a routerLink="/register"> register</a>
-</div>
-
-
+<br/>
+<br/>
 </body>
+<footer class="footer">
+    <a routerLink=""> Login page</a>
+</footer>
+

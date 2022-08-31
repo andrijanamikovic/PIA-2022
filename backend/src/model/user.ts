@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { model } from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -13,13 +13,12 @@ let User = new Schema({
     },
     username: {
         type: String,
-        unique: true,
+        // unique: true,
         required: true
     },
     password: {
         type: String,
         required: true
-        //treba mi i potvrda da bude dobar format? to mozda ne ovde
     },
     address: {
         type: String,
@@ -32,8 +31,8 @@ let User = new Schema({
     email:{
         type: String,
         required: true,
-        unique: true,
-        dropDups: true
+        // unique: true,
+        // dropDups: true
     },
     type: {
         type: Number,
@@ -46,4 +45,7 @@ let User = new Schema({
     //what to do with photo???
 })
 
-export default mongoose.model('UserModel', User, 'users');
+const UserModel =mongoose.model('UserModel', User, 'users');
+const ReviewModel = mongoose.model('ReviewModel', User, 'review')
+
+export  { UserModel, ReviewModel};

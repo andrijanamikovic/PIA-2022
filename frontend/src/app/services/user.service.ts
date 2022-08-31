@@ -25,7 +25,11 @@ export class UserService {
       lastname: lastname,
       username: username,
       password: password,
-      type: type
+      type: 0,
+      address:address,
+      phone: phone,
+      email: email,
+      photo: photo
     }
     return this.http.post(`${this.uri}/users/register`, data);
 

@@ -1,1 +1,64 @@
-<p>admin works!</p>
+<div class = "header">
+    LIBRARY
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Username</th>
+            <th>Photo</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let n of allRequests">
+            <td>
+                <output type='text' name='FirstName' value="n.firstname">{{n.firstname}}</output>
+            </td>
+            <td>
+                <output type='text' name='LastName'>{{n.lastname}}</output>
+            </td>
+            <td>
+                <output type='text' name='Username'>{{n.username}}</output>
+            </td>
+        <!-- <tr>
+            <td>*Password:</td>
+            <td>
+                <input type='password' name='Password' [(ngModel)]='password'>
+            </td>
+        </tr> -->
+            <td>
+                <output type='file' name='photo'>{{n.photo}}</output>
+            </td>
+            <td>
+                <output type='text' name='Email'>{{n.email}}</output>
+            </td>
+            <td>
+                <output type='text' name='Phone'>{{n.phone}}</output>
+            </td>
+            <td>
+                <output type='text' name='Address'>{{n.address}}</output>
+            </td>
+            <td colspan="3">
+                <button  (click) = 'approve(n.username)'>Approve</button>
+            </td>
+            <td colspan="3">
+                <button  (click) = 'decline(n.username)'>Decline</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+
+<footer class="footer">
+    <a routerLink=""> Login page</a>
+</footer>

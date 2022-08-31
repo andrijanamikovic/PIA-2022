@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -47,37 +47,35 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,24}$/;
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/;
     if (!pattern.test(this.password)){
       this.message = "Passwords needs to contain:\nBetween 8 and 24 letters \nOne upper-case letter \nOne lower-case letter \nOne number \nOne special sing ";
       return;
     }
 
-    const pattern1 = /(.)1\1\1/;
+    const pattern1 = /\\b([a-zA-Z0-9])\\1\\1+\\b/;
 
-    if (!pattern1.test(this.password)){
+    if (pattern1.test(this.password)){
       this.message = "It can't contain more then three "
       return;
     }
 
-    const emailPattern =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
     if (!emailPattern.test(this.email)){
       this.message = "Wrong email format";
     }
 
-    //is username and email uniq? 
     this.userService.register(this.firstname, this.lastname, this.username, this.password, this.address, this.phone, this.email, this.photo, this.type).subscribe(resp=>{
       if (resp['message'] == 'ok'){
-        this.message = 'User added';
+        this.message = 'User send for review';
       } else if (resp['message'] == 'username') {
         this.message = 'Error in adding user, username already exists';
       } else if (resp['message'] == 'email'){
         this.message = 'Error in adding user, email already in use with a different account';
       } else {
-        this.message = 'user added';
+        this.message = 'Unknown error';
       }
-      // do i need to add some router navigation
     })
 
 

@@ -1,5 +1,5 @@
 import express from "express"
-import UserModel from "../model/user";
+import { UserModel, ReviewModel } from "../model/user";
 
 export class UserController {
     login = (req: express.Request, res: express.Response) => {
@@ -13,20 +13,33 @@ export class UserController {
         })
     }
     //let user = new UserModel(req.body) samo ako su polja isto nazvana u bazi u body
+    message: string;
+    register = (req: express.Request, res: express.Response) => {
+       
+        let user = new UserModel(req.body);
+        //check if someone already have that username or email
+        UserModel.findOne({'username': user.username}, (err, user2) => {
+            if (err){
+                console.log(err);
+            } else if (user2){
+                res.json({"message":"username"})
+            }
+        })
 
-    // register = (req: express.Request, res: express.Response) => {
-    //     let user = new UserModel({
-    //         firstname: req.body.firstname,
-    //         lastname: req.body.lastname,
-    //         username: req.body.username,
-    //         password: req.body.password,
-    //         type: req.body.type
-    //     })
-    //     user.save().then(resp=>{
-    //         res.json({"message": "ok"});
-    //     }).catch(err=>{
-    //         console.log(err);
-    //         res.status(400).json({"message": "ok"});
-    //     })
-    // }
+        UserModel.findOne({'email': user.username}, (err, user2) => {
+            if (err){
+                console.log(err);
+            } else if (user2){
+                res.json({"message":"email"})
+            }
+        })
+        // I don't need to save just to send admin to review 
+        let review  = new ReviewModel(req.body);
+        review.save().then(resp=>{
+            res.json({"message": "ok"});
+        }).catch(err=>{
+            console.log(err);
+            res.json({"message": "ok"});
+        })
+    }
 }

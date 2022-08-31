@@ -1,5 +1,11 @@
+<div class = "header">
+    LIBRARY
+</div>
 
-<form>
+<br/>
+<br/>
+
+<body>
     <table>
         <tr>
             <h2 class="library">Register</h2>
@@ -64,8 +70,15 @@
             </td>
         </tr>
     </table>
-</form>
 
-<div class="loginPage">
-    Click here to go back to<a routerLink='/'> Login page </a>
+    
+<div *ngIf="message" class="error">
+    {{message}}
 </div>
+
+</body>
+<br/>
+<br/>
+<footer class="footer">
+    <a routerLink=""> Login page</a>
+</footer>
