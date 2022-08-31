@@ -42,4 +42,15 @@ export class UserController {
             res.json({"message": "ok"});
         })
     }
+
+    changePassword = (req: express.Request, res: express.Response) => {
+        console.log(req.body.User.username);
+        console.log( req.body.newPassoword);
+
+        UserModel.updateOne({ 'username': req.body.User.username}, {$set: {'password': req.body.newPassoword}}, (err, user) => {
+            if (err) console.log(err);
+            else res.json({'message':'updated'});
+        })
+    }
+
 }

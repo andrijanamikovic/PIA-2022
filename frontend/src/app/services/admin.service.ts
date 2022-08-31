@@ -28,4 +28,19 @@ export class AdminService {
     return this.http.post(`${this.uri}/admin/decline`, data);
   }
 
+  addUser(firstname, lastname, username, password, address, phone, email, photo, type){
+    const data = {
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password,
+      type: 0,
+      address:address,
+      phone: phone,
+      email: email,
+      photo: photo
+    }
+    return this.http.post(`${this.uri}/admin/addUser`, data);
+
+  }
 }

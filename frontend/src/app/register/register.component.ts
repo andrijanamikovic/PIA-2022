@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   password: string;
   confirmation: string;
   address: string;
-  phone: number;
+  phone: string;
   email: string;
   photo: string;
   type: number;

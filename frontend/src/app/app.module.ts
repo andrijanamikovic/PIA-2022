@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ModeratorComponent } from './moderator/moderator.component';
 import { ReaderComponent } from './reader/reader.component';
 import { RegisterComponent } from './register/register.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register/register.component';
     AdminComponent,
     ModeratorComponent,
     ReaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

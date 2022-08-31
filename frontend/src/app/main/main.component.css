@@ -1,0 +1,23 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 5%;
+    position: relative;
+    float: right;
+ }
+ .active {
+    background-color: #4CAF50;
+    color: white;
+ }
+ li {
+    /* display: inline; */
+    display: inline-block;
+ }
+
+ .mainManuItems{
+  color:rgb(0, 0, 0);
+  font-size: x-large;
+  text-decoration: none;
+  margin: 10px;
+ }
