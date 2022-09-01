@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 // import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { AdminService } from '../services/admin.service';
@@ -10,12 +11,21 @@ import { AdminService } from '../services/admin.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService,  private router: Router) { }
 
   ngOnInit(): void {
     this.adminService.getAllPadding().subscribe((data: User[])=>{
       this.allRequests = data;
     } )
+
+    
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+    if (current == null) {
+      this.router.navigate(['']);
+    }
+    else if (current.type != 1) {
+      this.router.navigate(['']);
+    }
   }
 
   allRequests: User[] = [];
@@ -27,6 +37,7 @@ export class AdminComponent implements OnInit {
       alert(resp['message'])
       this.ngOnInit(); //za refresh
     })
+
   }
 
 

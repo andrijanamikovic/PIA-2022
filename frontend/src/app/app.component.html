@@ -1,9 +1,36 @@
+<!-- Header -->
 <div class = "header">
-    LIBRARY
+    <section class="p-menu1">
+        <nav id="navbar" class="navigation" role="navigation">
+          <input id="toggle1" type="checkbox" />
+          <label class="hamburger1" for="toggle1">
+            <div class="top"></div>
+            <div class="meat"></div>
+            <div class="bottom"></div>
+          </label>
+        
+          <nav class="menu1">
+            <a class="link1" href="">Main page</a>
+            <a *ngIf=" isLogedIn()">
+                <a class="link1" href="">LogOut</a>
+            </a>
+            <a *ngIf=" isLogedIn()">
+                <a  class="link1" (click) = 'showChangePassword()' class="open-button">Change Password</a>
+            </a>
+            <a *ngIf="!isLogedIn()">
+                <a class="link1" href="/login">Log In</a>
+            </a>
+            <a *ngIf="!isLogedIn()">
+                <a class="link1" href="/register">Register</a>
+            </a>
+        </nav>
+      </nav>
+      </section>
 </div>
 <br/>
 <br/>
 <br/>
+<!--  -->
 <router-outlet></router-outlet>
 
 <div class="form-popup" id="myForm">
@@ -36,7 +63,5 @@
 <br/>
 <br/>
 <footer class="footer">
-    <a routerLink="/login"> Login page</a>
-    <br/>
-    <button (click) = 'showChangePassword()' class="open-button">Change Password</button>
+    Copyright © 2022 Andrijana 
 </footer>

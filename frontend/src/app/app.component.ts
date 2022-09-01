@@ -16,6 +16,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
 
@@ -26,7 +27,18 @@ export class AppComponent {
   
   showChangePassword(){
     document.getElementById("myForm").style.display = "block";
+  } 
+  
+
+  isLogedIn(){
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(current);
+    if (current == null) {
+      return false;
+    }
+    else return true;
   }
+
   
   changePassword(){
     console.log('Change password: ');

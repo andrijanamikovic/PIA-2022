@@ -146,3 +146,40 @@ animate it */
  /***********************************
  zoom on click
  ***********************************/
+
+ 
+/* Manu */
+/* 
+.background {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: .75s;
+} */
+/* 
+.nav{  
+  padding: 0px;
+  width: 640px;
+  margin: 100px auto auto auto;
+} */
+
+/* .nav{  
+  list-style-type: none;
+  float: right;
+}
+
+.nav-li a{ 
+  color: rgb(0, 0, 0);
+  /* padding: 30px; */
+  /* float:left;
+  width: 100px;
+  text-align:center;
+  font-size:15px;
+} */
+/* 
+.nav-li i{
+  height: 50px;
+} */ 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moderator',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModeratorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+    if (current == null) {
+      this.router.navigate(['']);
+    }
+    else if (current.type != 2) {
+      this.router.navigate(['']);
+    }
   }
 
 }
