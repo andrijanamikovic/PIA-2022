@@ -28,11 +28,14 @@ export class AppComponent {
   showChangePassword(){
     document.getElementById("myForm").style.display = "block";
   } 
+
+  searchBook(){
+    console.log("pretraga...");
+  }
   
 
   isLogedIn(){
     let current = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(current);
     if (current == null) {
       return false;
     }
@@ -83,5 +86,7 @@ export class AppComponent {
       }
     })
   }
+
+ 
 
 }
