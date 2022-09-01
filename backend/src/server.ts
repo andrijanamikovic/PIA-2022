@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import userRouter from './router/user.router';
 import adminRouter from './router/admin.router';
+import mainRouter from './router/main.router';
 
 
 const app = express();
@@ -16,6 +17,7 @@ connection.once('open', ()=>{console.log('db connected')})
 const router = express.Router();
 
 
+router.use('', mainRouter);
 router.use('/users', userRouter);
 router.use('/admin', adminRouter);
 
