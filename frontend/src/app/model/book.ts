@@ -8,4 +8,5 @@ export class Book {
     description: string;
     website: string;
     borrowed: number;
+    score:number;
 }

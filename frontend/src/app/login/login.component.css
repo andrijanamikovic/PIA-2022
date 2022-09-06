@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 .background{
 width: auto;
 height: auto;
@@ -9,6 +8,8 @@ height: auto;
     vertical-align:middle;
     margin: 0 auto;
     margin-top: 5%;
+    /* z-index: 20; */
+    position: relative;
 }
 table{
     /* height: 450px;

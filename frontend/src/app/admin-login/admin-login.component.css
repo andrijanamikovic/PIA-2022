@@ -1,0 +1,119 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.background{
+    width: auto;
+    height: auto;
+    }
+    .logIn{
+        vertical-align:middle;
+        margin: 0 auto;
+        margin-top: 5%;
+    }
+    table{
+        /* height: 450px;
+        width: 400px; */
+        vertical-align:middle;
+        aspect-ratio: 3/4;
+        background-color: rgba(255,255,255,0.13);
+        position: center;
+        /* top: 50%; */
+        /* left: 50%; */
+    
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 40px rgba(8,7,16,0.6);
+        padding: 50px 35px;
+        padding-top: 30px;
+    }
+    table *{
+        /* display:flex; */
+        /* position:relative; */
+        /* display: table-cell; */
+        vertical-align:middle;
+        max-width: 400px;
+        max-height: 450px;
+        padding: 15px;
+    
+        box-sizing: border-box;
+        /* position: relative; */
+        /* margin: 0 auto; */
+        text-align: center;
+        align-items: center;
+        font-family: 'Poppins',sans-serif;
+        color: #130e0e;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+    }
+    /* label{
+        display: block;
+        margin-top: 80px;
+        font-size: 16px;
+        font-weight: 500;
+    } */
+    input{
+        display: block;
+        height: 40px;
+        width: 100%;
+        background-color: rgb(255, 254, 254);
+        border-radius: 3px;
+        padding: 0 10px;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 300;
+    }
+    ::placeholder{
+        color: #e5e5e5;
+    }
+    button{
+        margin-top: 40px;
+        width: 100%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        
+    }
+    
+    .header{
+        top: 0;
+        position: fixed;
+        width: 100%;    
+        color: #84b3d7;   
+        background-color: rgba(255,255,255,0.13);
+        padding: 15px 0;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 40px rgba(8,7,16,0.6);
+        color: rgb(0, 0, 0);
+        text-align: center;
+        font-size: large;
+        font-weight: bolder;
+        margin:0%;
+        margin-right: 0%;
+        margin-bottom: 15%;
+    }
+    .footer{
+        /* top: 0; */
+        bottom: 0;
+        position: fixed;
+        width: 100%;    
+        color: #84b3d7;   
+        background-color: rgba(255,255,255,0.13);
+        padding: 15px 0;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 40px rgba(8,7,16,0.6);
+        color: rgb(0, 0, 0);
+        text-align: center;
+        font-size: large;
+        font-weight: bolder;
+        margin:0%;
+        margin-right: 0%;
+        margin-top: 15%;
+    }

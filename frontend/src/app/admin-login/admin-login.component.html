@@ -1,0 +1,33 @@
+<body class = "wrapper">
+    <table class="logIn">
+        <tr>
+            <td class="name">Username: </td>
+            <td>
+                <input type="text" name = "username" [(ngModel)]="username">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">Password: </td>
+            <td>
+                <input type="password" name = "password" [(ngModel)]="password">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button (click)="login()">LogIn</button>
+            </td>
+        </tr>
+    </table>
+    
+    
+    
+    <div *ngIf="message" class="error">
+        {{message}}
+    </div>
+    
+    <br/>
+    <br/>
+    </body>
+    
+    
+    

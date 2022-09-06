@@ -1,6 +1,9 @@
 <!-- Header -->
 <div class = "header">
     <section class="p-menu1">
+        <a *ngIf = "isLogedIn()">
+          <img src="../assets/avatars/avatar.png" alt="..." class="img-avatar">
+        </a>
         <nav id="navbar" class="navigation" role="navigation">
           <input id="toggle1" type="checkbox" />
           <label class="hamburger1" for="toggle1">
@@ -27,20 +30,13 @@
       </nav>
       </section>
 </div>
+
+<!-- <br/>
 <br/>
 <br/>
 <br/>
 <br/> -->
-<!-- search -->
 
-<!-- Load icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- The form -->
-<form class="example">
-  <input type="text" placeholder="Search.." name="search">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
 
 
 

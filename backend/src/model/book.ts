@@ -33,6 +33,9 @@ let Book = new Schema({
     },
     borrowed: {
        type: Number
+    },
+    score: {
+        type:Number
     }
 })
 

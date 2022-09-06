@@ -52,6 +52,17 @@ ul {
    vertical-align: top;
    transition: height 1s;
  }
+ .book-searched {
+  display: inline-block;
+  float: left;
+  width: 90px;
+  max-height: 100px;
+  box-shadow: 0 0 20px #aaa;
+  margin: 25px;
+  padding: 10px 10px 0 10px;
+  vertical-align: top;
+  transition: height 1s;
+}
  /* star button
  .book:after {
    font-family: FontAwesome;
@@ -95,9 +106,6 @@ ul {
      margin: 0 auto;
      margin-top: 50px;
    }
-   .cover {
-     
-   }
  }
  
  /*********************************
@@ -132,6 +140,44 @@ animate it */
    margin-top: -62px;
    margin-left: 20px;
  }
+
+ /* search */
+ 
+/* search */
+
+/* Style the search field */
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.search button {
+  float: left;
+  width: 15%;
+  padding: 5px;
+  background: #7689de;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: #abb8f1;
+}
+
+/* Clear floats */
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
  
  /***********************************
  star animation
@@ -141,7 +187,7 @@ animate it */
  ***********************************/
 
  
-/* Manu */
+/* Menu */
 /* 
 .background {
   position: fixed;

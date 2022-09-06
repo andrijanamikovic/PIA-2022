@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { Book } from './model/book';
 import { User } from './model/user';
+import { MainService } from './services/main.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'frontend';
 
-  constructor(private userService: UserService, private router: Router) { 
+  constructor(private userService: UserService, private router: Router, private mainService: MainService) { 
   }
 
   ngOnInit(): void {
@@ -29,10 +31,6 @@ export class AppComponent {
     document.getElementById("myForm").style.display = "block";
   } 
 
-  searchBook(){
-    console.log("pretraga...");
-  }
-  
 
   isLogedIn(){
     let current = JSON.parse(localStorage.getItem('currentUser'));
@@ -41,7 +39,6 @@ export class AppComponent {
     }
     else return true;
   }
-
   
   changePassword(){
     console.log('Change password: ');

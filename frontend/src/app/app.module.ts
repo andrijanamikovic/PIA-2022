@@ -11,6 +11,8 @@ import { ModeratorComponent } from './moderator/moderator.component';
 import { ReaderComponent } from './reader/reader.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MainComponent } from './main/main.component';
     ModeratorComponent,
     ReaderComponent,
     RegisterComponent,
-    MainComponent
+    MainComponent,
+    AdminLoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

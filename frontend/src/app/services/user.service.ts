@@ -19,6 +19,16 @@ export class UserService {
     return this.http.post(`${this.uri}/users/login`, data)
   }
 
+  loginAdmin(usernameFromForm, passwordFromForm) {
+    const data = {
+      username: usernameFromForm,
+      password: passwordFromForm
+    }
+
+    return this.http.post(`${this.uri}/users/adminlogin`, data)
+  }
+
+
   register(firstname, lastname, username, password, address, phone, email, photo, type){
     const data = {
       firstname: firstname,
