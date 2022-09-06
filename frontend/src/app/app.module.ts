@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BookPageComponent } from './book-page/book-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     MainComponent,
     AdminLoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    BookPageComponent
   ],
   imports: [
     BrowserModule,

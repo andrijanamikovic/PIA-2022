@@ -5,7 +5,7 @@ import { MainService } from '../services/main.service';
 
 @Component({
   selector: 'app-reader',
-  templateUrl: './reader.component.html',
+  templateUrl: './reader.component.html' ,
   styleUrls: ['./reader.component.css']
 })
 export class ReaderComponent implements OnInit {
@@ -13,13 +13,8 @@ export class ReaderComponent implements OnInit {
   constructor(private router: Router, private mainService: MainService) { }
 
   ngOnInit(): void {
-
-     
     let current = JSON.parse(localStorage.getItem('currentUser'));
     if (current == null) {
-      this.router.navigate(['']);
-    }
-    else if (current.type != 0) {
       this.router.navigate(['']);
     }
 
@@ -38,7 +33,7 @@ export class ReaderComponent implements OnInit {
   bookOfTheDay: Book;
   searchData: string[];
   searchedBooks: Book[] = [];
-  current: Book; 
+  clickedBook: Book; 
   searched: boolean;
 
   searchBook(data){
@@ -55,5 +50,12 @@ export class ReaderComponent implements OnInit {
         this.searchedBooks.push(book);
       }
     })
+  }
+
+  showBook(book: Book){
+    console.log("I clicked on book: ");
+    console.log(book);
+    localStorage.setItem('ClickedBook', book.title);
+    this.router.navigate(['/book']);
   }
 }

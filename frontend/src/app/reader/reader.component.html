@@ -19,7 +19,7 @@
       <div id="list-th"  ng-bind="bookOfTheDay">
         <div class="book read">
           <div class="cover">
-            <img src="../../assets/books/{{bookOfTheDay.title}}.jpg">
+            <img src="../../assets/books/{{bookOfTheDay.title}}.jpg"  (click)= "showBook(bookOfTheDay)">
           </div>
           <div class="description">
             <p class="title">{{bookOfTheDay.title}}<br>
@@ -38,7 +38,7 @@
       <div id="list-th" *ngFor="let n of searchedBooks">
         <div class="book read">
           <div class="cover">
-            <img src="../../assets/books/{{n.title}}.jpg">
+            <img src="../../assets/books/{{n.title}}.jpg" (click) = "showBook(n)">
           </div>
           <div class="description">
             <p class="title">{{n.title}}<br>

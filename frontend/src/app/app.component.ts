@@ -39,6 +39,19 @@ export class AppComponent {
     }
     else return true;
   }
+
+  back(){
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+    if (current == null) {
+       return this.router.navigate(['']);
+    } else if (current.type == 0) {
+      return this.router.navigate(['/reader']);
+    } else if (current.type == 1){
+      return this.router.navigate(['/admin']);
+    } else {
+      return this.router.navigate(['/moderator']);
+    }
+  }
   
   changePassword(){
     console.log('Change password: ');
@@ -84,6 +97,8 @@ export class AppComponent {
     })
   }
 
- 
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
 
 }

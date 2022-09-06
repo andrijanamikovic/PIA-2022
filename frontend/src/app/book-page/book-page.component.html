@@ -1,0 +1,18 @@
+<p>book-page works!</p>
+<div id="large-th">
+    <div class="container-books">
+      <br>
+      <div id="list-th"  ng-bind="clicked">
+        <div class="book read">
+          <div class="cover">
+            <img src="../../assets/books/{{clicked.title}}.jpg">
+          </div>
+          <div class="description">
+            <p class="title">{{clicked.title}}<br>
+              <span class="author">{{clicked.author}}</span><br>
+              <span class="author">{{clicked.score}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

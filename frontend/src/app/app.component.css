@@ -87,8 +87,9 @@
  margin: 0;
  display: -ms-grid;
  display: grid;
- grid-template-rows: 1fr repeat(4, 0.5fr);
- grid-row-gap: 25px;
+ /* grid-template-rows: 1fr repeat(4, 0.5fr); */
+ grid-template-rows: auto;
+ grid-row-gap: 15px;
  padding: 0;
  list-style: none;
  clear: both;

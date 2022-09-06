@@ -2,7 +2,7 @@
 <div class = "header">
     <section class="p-menu1">
         <a *ngIf = "isLogedIn()">
-          <img src="../assets/avatars/avatar.png" alt="..." class="img-avatar">
+          <img src="../assets/avatars/avatar.png" alt="..." class="img-avatar" (click)="goToProfile()">
         </a>
         <nav id="navbar" class="navigation" role="navigation">
           <input id="toggle1" type="checkbox" />
@@ -17,8 +17,11 @@
             <a *ngIf=" isLogedIn()">
                 <a class="link1" href="">LogOut</a>
             </a>
-            <a *ngIf=" isLogedIn()">
-                <a  class="link1" (click) = 'showChangePassword()' class="open-button">Change Password</a>
+            <a *ngIf="isLogedIn()">
+                <a  class="link1" (click) = 'showChangePassword()'>Change Password</a>
+            </a>
+            <a *ngIf="isLogedIn()">
+              <a class="link1" (click) = 'back()'>Back</a>
             </a>
             <a *ngIf="!isLogedIn()">
                 <a class="link1" href="/login">Log In</a>
