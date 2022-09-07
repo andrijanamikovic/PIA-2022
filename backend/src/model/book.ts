@@ -36,6 +36,9 @@ let Book = new Schema({
     },
     score: {
         type:Number
+    },
+    amount: {
+        type: Number
     }
 })
 

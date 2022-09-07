@@ -9,4 +9,5 @@ export class Book {
     website: string;
     borrowed: number;
     score:number;
+    amount:number;
 }

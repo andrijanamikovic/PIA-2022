@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import userRouter from './router/user.router';
 import adminRouter from './router/admin.router';
 import mainRouter from './router/main.router';
+import bookRouter from './router/book.router';
 
 
 const app = express();
@@ -20,6 +21,7 @@ const router = express.Router();
 router.use('', mainRouter);
 router.use('/users', userRouter);
 router.use('/admin', adminRouter);
+router.use('/book', bookRouter);
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

@@ -1,4 +1,3 @@
-<p>book-page works!</p>
 <div id="large-th">
     <div class="container-books">
       <br>
@@ -10,9 +9,16 @@
           <div class="description">
             <p class="title">{{clicked.title}}<br>
               <span class="author">{{clicked.author}}</span><br>
-              <span class="author">{{clicked.score}}</span></p>
+              <span class="author">{{clicked.amount-clicked.borrowed}}</span><br>
+              <span class="author">{{clicked.score!=0?clicked.score:null}}</span></p>
           </div>
         </div>
       </div>
     </div>
+    <button *ngIf="clicked.amount-clicked.borrowed" (click)="borrow()">Take</button>
   </div>
+
+  <div *ngIf="message" class="error">
+    {{message}}
+</div>
+
