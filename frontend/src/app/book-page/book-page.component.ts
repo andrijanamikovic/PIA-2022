@@ -43,6 +43,8 @@ export class BookPageComponent implements OnInit {
         this.message = 'ok';
         //moram da bacim update za broj uzetih knjiga
         
+      } else if (resp['message'] == '3 taken') {
+        this.message = 'exited limit';
       } else {
         this.message = 'error';
       }

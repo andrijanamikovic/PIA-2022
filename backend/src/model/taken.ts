@@ -24,6 +24,10 @@ let taken = new Schema({
     to: {
         type: Date,
         required: true
+    },
+    back: {
+        type: Boolean,
+        required: true
     }
 })
 

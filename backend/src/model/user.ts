@@ -40,12 +40,16 @@ let User = new Schema({
     },
     photo: {
         data:Buffer,
-        contentType: String
+        type: String
+    },
+    taken: {
+        type: Number,
+        default: 0
     }
     //what to do with photo???
 })
 
-const UserModel =mongoose.model('UserModel', User, 'users');
+const UserModel = mongoose.model('UserModel', User, 'users');
 const ReviewModel = mongoose.model('ReviewModel', User, 'review')
 
 export  { UserModel, ReviewModel};

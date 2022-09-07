@@ -8,4 +8,9 @@ bookRouter.route('/take').post(
 )
 
 
+bookRouter.route('/borrowed').post(
+    (req, res)=> new BooksController().borrowed(req, res)
+)
+
+
 export default bookRouter;

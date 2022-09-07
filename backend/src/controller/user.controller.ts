@@ -1,4 +1,5 @@
 import express from "express"
+import { imageModel } from "../model/image";
 import { UserModel, ReviewModel } from "../model/user";
 
 export class UserController {
@@ -34,7 +35,29 @@ export class UserController {
             }
         })
         // I don't need to save just to send admin to review 
+        
+        // var imgModel = new imageModel();
+        // var fs = require('fs');
+        // var path = require('path');
+        // var newImg = fs.readFileSync(req.body.photo);
+        // // encode the file as a base64 string.
+        // var encImg = newImg.toString('base64');
+        // // define your new document
+        // var newItem = {
+        //     description: req.body.description,
+        //     contentType: String,
+        //     size: req.body.photo.size,
+        //     img: new Buffer(encImg, 'base64')
+        // };
+    
+        // imgModel.insert(newItem)
+        //     .then(function() {
+        //         console.log('image inserted!');
+        //     });
+        
         let review  = new ReviewModel(req.body);
+
+        // res.send('yo');
         review.save().then(resp=>{
             res.json({"message": "ok"});
         }).catch(err=>{

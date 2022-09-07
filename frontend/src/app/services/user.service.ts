@@ -39,7 +39,8 @@ export class UserService {
       address:address,
       phone: phone,
       email: email,
-      photo: photo
+      photo: photo,
+      taken: 0
     }
     return this.http.post(`${this.uri}/users/register`, data);
 

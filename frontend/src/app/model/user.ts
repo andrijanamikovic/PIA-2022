@@ -9,4 +9,5 @@ export class User {
     photo:string;
     type: number; //1-admin 2-moderator 0-reader
     //picture ????
+    taken: number;
 }

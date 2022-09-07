@@ -17,12 +17,23 @@ export class TakeService {
       book:book,
       user:user,
       from:  new Date().toLocaleDateString(),
-      to: new Date(+new Date + 12096e5).toLocaleDateString()
+      to: new Date(+new Date + 12096e5).toLocaleDateString(),
+      back: false
     }
     console.log("Take:  ");
     console.log(data);
     return this.http.post(`${this.uri}/book/take`, data);
 
   }
+
+
+  getBorrowed(user: User) {
+    const data = {
+      user: user
+    }
+    return this.http.post(`${this.uri}/book/borrowed`, data);
+  }
+
+  
 }
 

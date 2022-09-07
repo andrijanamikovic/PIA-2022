@@ -30,6 +30,23 @@
       </div>
     </div>
   </div>
+  <div id="large-th" *ngIf="!searched">
+    <div class="container-books">
+      <h1>Borrowed books</h1>
+      <br>
+      <div id="list-th" *ngFor="let n of borrowedBooks">
+        <div class="book read">
+          <div class="cover">
+            <img src="../../assets/books/{{n.title}}.jpg" (click) = "showBook(n)">
+          </div>
+          <div class="description">
+            <p class="title">{{n.title}}<br>
+              <span class="author">{{n.author}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <div id="large-th" *ngIf="searched">
     <div class="container-books">
