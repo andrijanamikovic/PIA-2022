@@ -22,6 +22,7 @@ export class TakeService {
     }
     console.log("Take:  ");
     console.log(data);
+    console.log(typeof(data.to));
     return this.http.post(`${this.uri}/book/take`, data);
 
   }
@@ -34,6 +35,12 @@ export class TakeService {
     return this.http.post(`${this.uri}/book/borrowed`, data);
   }
 
-  
+    taken(user: User){
+      const data = {
+        user: user
+      }
+      return this.http.post(`${this.uri}/book/taken`, data);
+    }
+
 }
 

@@ -41,24 +41,36 @@ export class BooksController {
     }
 
     borrowed = (req: express.Request, res: express.Response) => {
-        TakenModel.find({ 'user': req.body.user._id, 'back':'false'}, (err, books) => {
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'false' }, (err, books) => {
             if (err) console.log(err);
             else {
                 let id = [];
-                books.forEach(book=>{
+                books.forEach(book => {
                     id.push(book.book);
                 })
-                    BookModel.find({ _id : { $in : id } }, (err, current) => {
-                        if (err) console.log(err);
-                        else {
-                            // console.log(current);
-                            //tu mogu da spakujem to i datum vracanja nekako 
-                            res.json(current);
-                        }
-                    });
-                }
-                    
-        }).clone().catch(function(err){ console.log(err)});
+                BookModel.find({ _id: { $in: id } }, (err, current) => {
+                    if (err) console.log(err);
+                    else {
+                        // console.log(current);
+                        //tu mogu da spakujem to i datum vracanja nekako 
+                        res.json(current);
+                    }
+                });
+            }
+
+        }).clone().catch(function (err) { console.log(err) });
+    }
+
+
+    taken = (req: express.Request, res: express.Response) => {
+        console.log("taken");
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'false' }, (err, books) => {
+            if (err) console.log(err);
+            else {
+                console.log(books);
+                res.json(books);
+            }
+        });
     }
 
 

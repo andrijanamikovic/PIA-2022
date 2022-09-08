@@ -10,4 +10,5 @@ export class Book {
     borrowed: number;
     score:number;
     amount:number;
+    _id: string;
 }

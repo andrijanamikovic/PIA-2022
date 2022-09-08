@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../model/book';
+import { Taken } from '../model/taken';
 import { MainService } from '../services/main.service';
 import { TakeService } from '../services/take.service';
 
@@ -33,15 +34,22 @@ export class ReaderComponent implements OnInit {
         this.borrowedBooks = data;
         console.log(this.borrowedBooks);
       })
+      this.takeService.taken(current).subscribe((data: Taken[]) => {
+        this.taken = data;
+      })
+
     }
   }
 
+  borrowed = [];
+  taken: Taken[] = [];
   books: Book[] = [];
   bookOfTheDay: Book;
   searchData: string[];
   searchedBooks: Book[] = [];
   clickedBook: Book;
   searched: boolean;
+  date: String;
 
   searchBook(data) {
     //data.search mi je to sto treba da pretrazim delimicno kao authora ili kao naslov knjige
@@ -67,4 +75,9 @@ export class ReaderComponent implements OnInit {
   }
 
   borrowedBooks: Book[] = [];
+
+  getDate(n: Book){
+    this.date = new Date().toDateString();
+    console.log("Datum: ", this.date);
+  }
 }
