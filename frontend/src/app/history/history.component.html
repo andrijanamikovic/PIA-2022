@@ -2,10 +2,26 @@
     <table>
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Date took</th>
-            <th>Date returned</th>
+            <th>
+                <button (click)="changeOrder('title')" ng-click="orderByField='title'; reverseSort = !reverseSort">
+                    Title <span ng-show="orderByField == 'title'"></span>
+                </button>
+            </th>
+            <th>
+                <button (click)="changeOrder('author')"  ng-click="orderByField='Author'; reverseSort = !reverseSort">
+                    Author <span ng-show="orderByField == 'Author'"></span>
+                </button>
+            </th>
+            <th>
+                <button (click)="changeOrder('Date took')" ng-click="orderByField='Date took'; reverseSort = !reverseSort">
+                    Date took <span ng-show="orderByField == 'Date took'"></span>
+                </button>
+            </th>
+            <th>
+                <button (click)="changeOrder('Date returned')" ng-click="orderByField='Date returned'; reverseSort = !reverseSort">
+                    Date returned <span ng-show="orderByField == 'Date returned'"></span>
+                </button>
+            </th>
             <th>Action</th>
         </tr>
         </thead>

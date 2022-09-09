@@ -47,6 +47,10 @@ export class HistoryComponent implements OnInit {
                       }
                     console.log("this borrowed books");
                     console.log(this.returnedBooks);
+                    this.borrowed = this.borrowed.sort((a, b) => {
+                      const result = a.returned > b.returned ? 1 : -1;
+                      return result;
+                    });
                   }
                 }
           })
@@ -58,12 +62,42 @@ export class HistoryComponent implements OnInit {
   borrowed: Returned[] = [];
   returnedBooks: Book[] = [];
   taken: Taken[] = [];
+  reverse: Boolean[] = [false,false,false,false];
 
   showBook(book: Book) {
     console.log("I clicked on book: ");
     console.log(book);
     localStorage.setItem('ClickedBook', book.title);
     this.router.navigate(['/book']);
+  }
+
+  changeOrder(By : string) {
+    //how to sort by...
+    //i treba mi dal re reverse ili ne
+    console.log("Before sort: ");
+    console.log(this.borrowed);
+    this.borrowed = this.borrowed.sort((a, b) => {
+      if (By == 'title'){
+        const result = a.book.title.localeCompare(b.book.title);
+        this.reverse[0] = !this.reverse[0];
+        return !this.reverse[0] ? -1*result:result;
+      } else if (By == 'author') {
+        const result = a.book.author.localeCompare(b.book.author);
+        this.reverse[1] = !this.reverse[1];
+        return !this.reverse[1] ? -1*result:result;
+      } else if (By == 'Date returned') {
+        const result = a.returned > b.returned ? 1 : -1;
+        this.reverse[2] = !this.reverse[2];
+        return !this.reverse[2] ? -1*result:result;
+      } else if (By == 'Date took'){
+        const result = a.returned > b.returned ? 1 : -1;
+        this.reverse[3] = !this.reverse[3];
+        return !this.reverse[3] ? -1*result:result;
+      } else 
+      return 0;
+    })
+    console.log("After sort: ");
+    console.log(this.borrowed);
   }
 
 }
