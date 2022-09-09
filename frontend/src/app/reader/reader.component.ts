@@ -40,7 +40,6 @@ export class ReaderComponent implements OnInit {
         this.borrowedBooks = data;
         console.log("Borrowed books");
         console.log(this.borrowedBooks);
-      })
       
       this.takeService.taken(current).subscribe((data: Taken[]) => {
         this.taken = data;
@@ -49,10 +48,11 @@ export class ReaderComponent implements OnInit {
         let book: Book;
         book = this.borrowedBooks[i];
         console.log("Book: ");
+        console.log(book);
         // console.log(book);
           for (let j= 0; j<this.taken.length; j++){
             let took:Taken;
-            took = this.taken[i];
+            took = this.taken[j];
           if (took.book == book._id) {
             let now = Date.now();
             let diff = Math.floor((now - took.from) / (1000*60*60*24));
@@ -65,6 +65,7 @@ export class ReaderComponent implements OnInit {
       }
     }
       })
+    })
   }
   }
 
@@ -115,5 +116,9 @@ export class ReaderComponent implements OnInit {
     })
   }
 
+
+  history(){
+    this.router.navigate(['/history']);
+  }
 
 }

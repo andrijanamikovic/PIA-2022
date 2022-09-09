@@ -1,4 +1,4 @@
-import express from "express"
+import express, { response } from "express"
 import { TakenModel } from "../model/taken";
 import { BookModel } from "../model/book";
 import { UserModel } from "../model/user";
@@ -75,7 +75,10 @@ export class BooksController {
 
     back = (req: express.Request, res: express.Response) => {
         let now = Date.now();
-        TakenModel.updateOne({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id } , { $set: { 'back': 'true' }} , {$set: {'dateBack': now}}, (err, user) => {
+        TakenModel.updateOne({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id } , { $set: { 'back': 'true' }}, (err, user) => {
+            if (err) console.log(err);
+        });
+        TakenModel.updateOne({ 'user': req.body.user._id, 'book':  req.body.book._id } , { $set: { 'dateBack': now }}, (err, user) => {
             if (err) console.log(err);
         });
         console.log("Nadjena knjiga koju ocu da izbacim...");
@@ -86,6 +89,14 @@ export class BooksController {
             if (err) console.log(err);
         });
         res.json({ "message": "ok" });
+    }
+
+    returned = (req: express.Request, res: express.Response) => {
+        let now = Date.now();
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'true' },  (err, data) => {
+            if (err) console.log(err);
+            else res.json(data);
+        });
     }
 
 

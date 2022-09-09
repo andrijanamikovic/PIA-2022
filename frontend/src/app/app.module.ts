@@ -14,6 +14,8 @@ import { MainComponent } from './main/main.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BookPageComponent } from './book-page/book-page.component';
+import { ChangePassComponent } from './change-pass/change-pass.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BookPageComponent } from './book-page/book-page.component';
     MainComponent,
     AdminLoginComponent,
     ProfileComponent,
-    BookPageComponent
+    BookPageComponent,
+    ChangePassComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

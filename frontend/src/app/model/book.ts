@@ -1,4 +1,5 @@
 export class Book {
+    _id: string;
     title: string;
     subtitle: string;
     author: string;
@@ -10,5 +11,4 @@ export class Book {
     borrowed: number;
     score:number;
     amount:number;
-    _id: string;
 }
