@@ -43,7 +43,7 @@ export class HistoryComponent implements OnInit {
                     let took:Taken;
                     took = this.taken[j];
                       if (took.book == book._id) {
-                        this.borrowed.push(new Returned(book,took.from, took.dateBack));
+                        this.borrowed.push(new Returned(book, new Date(took.from), new Date(took.dateBack)));
                       }
                     console.log("this borrowed books");
                     console.log(this.returnedBooks);
