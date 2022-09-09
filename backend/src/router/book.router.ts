@@ -17,5 +17,9 @@ bookRouter.route('/taken').post(
     (req, res)=> new BooksController().taken(req, res)
 )
 
+bookRouter.route('/back').post(
+    (req, res)=> new BooksController().back(req, res)
+)
+
 
 export default bookRouter;

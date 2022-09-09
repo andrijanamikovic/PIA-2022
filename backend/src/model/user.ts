@@ -43,8 +43,10 @@ let User = new Schema({
         type: String
     },
     taken: {
-        type: Number,
-        default: 0
+        type: Number
+    },
+    days: {
+        type: Number
     }
     //what to do with photo???
 })

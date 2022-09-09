@@ -15,18 +15,21 @@ let taken = new Schema({
         type: String,
         required: true
     },
-
     from: {
-        type: Date,
+        type: Number,
         required: true
     },
 
     to: {
-        type: Date,
+        type: Number,
         required: true
     },
     back: {
         type: Boolean,
+        required: true
+    },
+    dateBack: {
+        type: Number,
         required: true
     }
 })

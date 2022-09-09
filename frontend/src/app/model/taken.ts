@@ -1,7 +1,8 @@
 export class Taken {
       book:string;
       user:string;
-      from: Date;
-      to: Date;
+      from: number;
+      to: number;
       back: Boolean;
+      dateBack:number;
 }

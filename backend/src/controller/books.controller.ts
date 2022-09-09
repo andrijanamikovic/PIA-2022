@@ -63,14 +63,29 @@ export class BooksController {
 
 
     taken = (req: express.Request, res: express.Response) => {
-        console.log("taken");
+        // console.log("taken");
         TakenModel.find({ 'user': req.body.user._id, 'back': 'false' }, (err, books) => {
             if (err) console.log(err);
             else {
-                console.log(books);
+                // console.log(books);
                 res.json(books);
             }
         });
+    }
+
+    back = (req: express.Request, res: express.Response) => {
+        let now = Date.now();
+        TakenModel.updateOne({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id } , { $set: { 'back': 'true' }} , {$set: {'dateBack': now}}, (err, user) => {
+            if (err) console.log(err);
+        });
+        console.log("Nadjena knjiga koju ocu da izbacim...");
+        BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'borrowed': -1 } }, (err, user) => {
+            if (err) console.log(err);
+        });
+        UserModel.updateOne({ '_id': req.body.user._id }, { $inc: { 'taken': -1 } }, (err, user) => {
+            if (err) console.log(err);
+        });
+        res.json({ "message": "ok" });
     }
 
 

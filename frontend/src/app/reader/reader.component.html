@@ -12,45 +12,61 @@
 
 <!-- books -->
 
-<div id="large-th" *ngIf="!searched">
-    <div class="container-books">
-      <h1>Book of the day</h1>
-      <br>
-      <div id="list-th"  ng-bind="bookOfTheDay">
-        <div class="book read">
-          <div class="cover">
-            <img src="../../assets/books/{{bookOfTheDay.title}}.jpg"  (click)= "showBook(bookOfTheDay)">
-          </div>
-          <div class="description">
-            <p class="title">{{bookOfTheDay.title}}<br>
-              <span class="author">{{bookOfTheDay.author}}</span><br>
-              <span class="author">{{bookOfTheDay.score}}</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div id="large-th" *ngIf="!searched">
-    <div class="container-books">
-      <h1>Borrowed books</h1>
-      <br>
-      <div id="list-th" *ngFor="let n of borrowedBooks">
-        <div class="book read">
-          <div class="cover">
-            <img src="../../assets/books/{{n.title}}.jpg" (click) = "showBook(n)">
+    <div class="day">
+        <h3>Book of the day</h3>
+        <br>
+        <div id="list-th"  ng-bind="bookOfTheDay">
+          <div class="book read">
+            <div class="cover">
+              <img src="../../assets/books/{{bookOfTheDay.title}}.jpg"  (click)= "showBook(bookOfTheDay)">
+            </div>
+            <div class="description">
+              <p class="title">{{bookOfTheDay.title}}<br>
+                <span class="author">{{bookOfTheDay.author}}</span><br>
+                <span class="author">{{bookOfTheDay.score}}</span></p>
+            </div>
           </div>
-          <div class="description">
-            <p class="title">{{n.title}}<br>
-              <span class="author">{{n.author}}</span></p>
-          </div>
-          <!-- <div class="description">
-            <span class="author" value="getDate(n)" ngBind = "date">{{date}}</span>
-          </div> -->
         </div>
-      </div>
+      <br/>
+        <table>
+          <!-- <h3>Borrowed books</h3> -->
+          <br>
+          <div id="list-th" *ngFor="let n of borrowed">
+              <th>Borrowed books</th>
+              <th>Description</th>
+              <th>Days to give back</th>
+              <th>Actions</th>
+              <tr>
+                <td class="book read">
+                  <div class="cover">
+                    
+                      <img src="../../assets/books/{{n.book.title}}.jpg" (click) = "showBook(n.book)">
+                    
+                  </div>
+                </td>
+                <td>
+                  <div class="description">
+                    <p>{{n.book.title}}<br>
+                      <span>{{n.book.author}}</span></p>
+                  </div>
+                </td>
+                <td>
+                  <div class="description">
+                    <span [ngStyle]="{'color': getColor(n.days)}">{{n.days}}</span>
+                  </div>
+                </td>
+                <td>
+                  <button (click)="showBook(n.book)">About book</button>
+                  <button  (click)="giveBack(n.book)">Give back</button>
+                </td> 
+              </tr>
+          </div>
+       </table>
     </div>
   </div>
   
+  <!--searched  -->
 <div id="large-th" *ngIf="searched">
     <div class="container-books">
       <h1>Searched books</h1>
@@ -62,7 +78,7 @@
           </div>
           <div class="description">
             <p class="title">{{n.title}}<br>
-              <span class="author">{{n.author}}</span></p>
+              <span class="author" >{{n.author}}</span></p>
           </div>
         </div>
       </div>
