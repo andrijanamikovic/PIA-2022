@@ -1,1 +1,31 @@
-<p>history works!</p>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date took</th>
+            <th>Date returned</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let n of borrowed">
+            <td>
+                <output type='text'>{{n.book.title}}</output>
+            </td>
+            <td>
+                <output type='text'>{{n.book.author}}</output>
+            </td>
+            <td>
+                <output type='text'>{{n.taken.toLocaleString('en-US')}}</output>
+            </td>
+            <td>
+                <output type='file'>{{n.returned.toLocaleString('en-US')}}</output>
+            </td>
+            <td>
+                <button  (click) = 'showBook(n.book)'>Show book</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>

@@ -61,5 +61,12 @@ export class TakeService {
       return this.http.post(`${this.uri}/book/returned`, data);
     }
 
+    getReturnedBooks(user: User) {
+      const data = {
+        user: user
+      }
+      return this.http.post(`${this.uri}/book/returnedBooks`, data);
+    }
+
 }
 

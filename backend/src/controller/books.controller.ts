@@ -26,18 +26,24 @@ export class BooksController {
             res.json({ "message": "3 taken" });
             return;
         }
-        taken.save().then(resp => {
-            BookModel.updateOne({ '_id': req.body.book }, { $inc: { 'borrowed': 1 } }, (err, user) => {
-                if (err) console.log(err);
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id }, (err, data) =>{
+            if (err) console.log(err);
+            if (data != null) {
+                res.json({ "message": "already taken" });
+                return;
+            } else {
+            taken.save().then(resp => {
+                BookModel.updateOne({ '_id': req.body.book }, { $inc: { 'borrowed': 1 } }, (err, user) => {
+                    if (err) console.log(err);
+                })
+                UserModel.updateOne({ '_id': req.body.user }, { $inc: { 'taken': 1 } }, (err, user) => {
+                    if (err) console.log(err);
+                })
+                res.json({ "message": "ok" });
             })
-            UserModel.updateOne({ '_id': req.body.user }, { $inc: { 'taken': 1 } }, (err, user) => {
-                if (err) console.log(err);
-            })
-            res.json({ "message": "ok" });
-        }).catch(err => {
-            console.log(err);
-            res.json({ "message": "error" });
-        })
+            }
+        }).clone();;
+            
     }
 
     borrowed = (req: express.Request, res: express.Response) => {
@@ -81,7 +87,7 @@ export class BooksController {
         TakenModel.updateOne({ 'user': req.body.user._id, 'book':  req.body.book._id } , { $set: { 'dateBack': now }}, (err, user) => {
             if (err) console.log(err);
         });
-        console.log("Nadjena knjiga koju ocu da izbacim...");
+        // console.log("Nadjena knjiga koju ocu da izbacim...");
         BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'borrowed': -1 } }, (err, user) => {
             if (err) console.log(err);
         });
@@ -97,6 +103,25 @@ export class BooksController {
             if (err) console.log(err);
             else res.json(data);
         });
+    }
+
+    returnedBooks = (req: express.Request, res: express.Response) => {
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'true' }, (err, books) => {
+            if (err) console.log(err);
+            else {
+                let id = [];
+                books.forEach(book => {
+                    id.push(book.book);
+                })
+                BookModel.find({ _id: { $in: id } }, (err, current) => {
+                    if (err) console.log(err);
+                    else {
+                        res.json(current);
+                    }
+                });
+            }
+
+        }).clone().catch(function (err) { console.log(err) });
     }
 
 

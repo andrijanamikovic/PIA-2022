@@ -25,7 +25,7 @@ export class ReaderComponent implements OnInit {
     if (current == null) {
       this.router.navigate(['']);
     }
-
+    localStorage.setItem('flag','true');
     this.mainService.getTop().subscribe((data: Book[]) => {
       this.books = data;
       let index;
@@ -58,6 +58,9 @@ export class ReaderComponent implements OnInit {
             let diff = Math.floor((now - took.from) / (1000*60*60*24));
             console.log(diff);
             diff = current.days - diff;
+            if (diff<0) {
+              localStorage.setItem('flag','false');
+            }
             this.borrowed.push(new Took(book,diff));
           }
         console.log("this borrowed books");

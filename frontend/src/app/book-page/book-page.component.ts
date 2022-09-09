@@ -38,6 +38,9 @@ export class BookPageComponent implements OnInit {
   borrow(){
     //ovde treba da povecam broj uzetih i negde da napravim da sam ja uzela knjigu u novoj tabeli kako 
     //koji moj kurac to da uradim zivote
+    if (localStorage.getItem('flag')=='false'){
+      this.message = "Have books whit expired deadline, need to give them back first in order to get a new one";
+    } else {
     this.takeService.take(this.clicked,this.current).subscribe(resp=>{
       if (resp['message'] == 'ok'){
         this.message = 'ok';
@@ -45,10 +48,13 @@ export class BookPageComponent implements OnInit {
         
       } else if (resp['message'] == '3 taken') {
         this.message = 'exited limit';
-      } else {
+      } if (resp['message'] == 'already taken') {
+        this.message = 'already taken and not returned';
+      }else {
         this.message = 'error';
       }
     });
+  }
   }
 
 }
