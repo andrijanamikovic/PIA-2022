@@ -12,4 +12,8 @@ export class MainService {
   getTop(){
     return this.http.get(`${this.uri}/topThree`);
   }
+
+  getDays(){
+    return this.http.get(`${this.uri}/days`);
+  }
 }

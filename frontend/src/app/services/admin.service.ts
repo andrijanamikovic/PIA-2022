@@ -43,4 +43,25 @@ export class AdminService {
     return this.http.post(`${this.uri}/admin/addUser`, data);
 
   }
+
+  changeDays(days){
+    const data = {
+      days: days
+    }
+    return this.http.post(`${this.uri}/admin/changeDays`, data);
+  }
+
+  extend(extend) {
+    const data = {
+      days: extend
+    }
+    return this.http.post(`${this.uri}/admin/extendDays`, data);
+  }
+
+  delete(book){
+    const data = {
+      book:book
+    }
+    return this.http.post(`${this.uri}/book/delete`, data);
+  }
 }

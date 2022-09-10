@@ -1,0 +1,87 @@
+<body class="wrraper">
+    <table ng-bind="newBook">
+        <tr>
+            <h2 class="library">Add a new book</h2>
+        </tr>
+        <tr>
+            <td>Title:</td>
+            <td>
+                <input type='text' name='title' [(ngModel)]='newBook.title'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Subtitle:</td>
+            <td>
+                <input type='text' name='subtitle' [(ngModel)]='newBook.subtitle'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td>
+                <input type='text' name='author' [(ngModel)]='newBook.author'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Published date:</td>
+            <td>
+                <input type='text' name='published' [(ngModel)]='newBook.published'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Publisher:</td>
+            <td>
+                <input type='text' name='publisher' [(ngModel)]='newBook.publisher'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Pages:</td>
+            <td>
+                <input type='number' name='pages' [(ngModel)]='newBook.pages'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>
+                <input type='text' name='description' [(ngModel)]='newBook.description'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Website:</td>
+            <td>
+                <input type='text' name='website' [(ngModel)]='newBook.website'>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td>
+                <input type='text' name='amount' [(ngModel)]='newBook.amount'>
+                <br/>
+            </td>
+        </tr>
+        <!-- <tr>
+            <td>Photo:</td>
+            <td>
+                <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
+            </td>
+        </tr> -->
+        <tr>
+            <td colspan='2'>
+                <button (click)='submit()'>submit</button>
+            </td>
+        </tr>
+    </table>
+    
+    
+    <div *ngIf="message" class="error">
+    {{message}}
+    </div>
+    
+    </body>

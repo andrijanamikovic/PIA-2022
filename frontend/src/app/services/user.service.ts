@@ -55,4 +55,15 @@ export class UserService {
 
     return this.http.post(`${this.uri}/users/changePassword`, data)
   }
+
+  getAll() {
+    return this.http.get(`${this.uri}/users/getAll`);
+  }
+
+  delete(user){
+    const data = {
+      user:user
+    }
+    return this.http.post(`${this.uri}/users/delete`, data)
+  }
 }

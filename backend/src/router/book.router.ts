@@ -31,5 +31,9 @@ bookRouter.route('/returnedBooks').post(
 )
 
 
+bookRouter.route('/delete').post(
+    (req, res)=> new BooksController().delete(req, res)
+)
+
 
 export default bookRouter;

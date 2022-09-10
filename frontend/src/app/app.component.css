@@ -1,4 +1,8 @@
-
+.wrapper{
+  padding-top: 15%;
+  padding-bottom: 15%;
+  margin-bottom: 15%;
+}
 .form-popup {
   display: none;
   position: absolute;

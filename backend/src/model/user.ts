@@ -44,11 +44,12 @@ let User = new Schema({
     },
     taken: {
         type: Number
-    },
-    days: {
-        type: Number
     }
-    //what to do with photo???
+    // ,
+    // days: {
+    //     type: Number
+    // }
+    // what to do with photo???
 })
 
 const UserModel = mongoose.model('UserModel', User, 'users');

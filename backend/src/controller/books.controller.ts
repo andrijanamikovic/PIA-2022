@@ -28,7 +28,8 @@ export class BooksController {
         }
         TakenModel.find({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id }, (err, data) =>{
             if (err) console.log(err);
-            if (data != null) {
+            if (data.length != 0) {
+                console.log("taken ", data);
                 res.json({ "message": "already taken" });
                 return;
             } else {
@@ -122,6 +123,13 @@ export class BooksController {
             }
 
         }).clone().catch(function (err) { console.log(err) });
+    }
+
+    delete = (req: express.Request, res: express.Response) => {
+        BookModel.deleteOne({'_id':req.body.book._id}, (err, userData)=>{
+            if (err) console.log(err);
+            else res.json("ok");
+        })
     }
 
 

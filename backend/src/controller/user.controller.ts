@@ -76,4 +76,18 @@ export class UserController {
         })
     }
 
+    getAll = (req: express.Request, res: express.Response)=>{
+        UserModel.find({}, (err, news)=>{
+            if (err) console.log(err);
+            else res.json(news);
+        })
+    }
+
+    delete = (req: express.Request, res: express.Response) => {
+        UserModel.deleteOne({'_id':req.body.user._id}, (err, userData)=>{
+            if (err) console.log(err);
+            else res.json("ok");
+        })
+    }
+
 }

@@ -124,5 +124,25 @@
     <div *ngIf="message" class="error">
         {{message}}
     </div>
+
+    <div>
+        How long they can borrow
+        <input type="number" [(ngModel)]="days">
+        <button (click)="changeDays()">Submit</button>
+    </div>
+    <div>
+        Extend deadline by
+        <input type="number" [(ngModel)]="extend">
+        <button (click)="extendDays()">Submit</button>
+    </div>
+
+    <div *ngIf="message2" class="error">
+        {{message2}}
+    </div>
+
+    <br/>
+    <button (click)="editBook()">Edit book</button>
+    <button (click)="editUser()">Edit user</button>
+    <button (click)="addBook()">Add a new book</button>
 </body>
 

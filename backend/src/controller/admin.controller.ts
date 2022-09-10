@@ -1,4 +1,5 @@
 import express from "express"
+import { DaysModel } from "../model/days";
 import {ReviewModel, UserModel } from "../model/user";
 
 
@@ -72,5 +73,35 @@ export class AdminController {
             res.json({"message": "ok"});
         })
     }
+
+    getDays = (req: express.Request, res: express.Response)=>{
+        DaysModel.find({}, (err, data)=>{
+            if (err) console.log(err);
+            else {
+                // console.log(data);
+                res.json(data);
+            }
+        })
+    }
+
+    changeDays = (req: express.Request, res: express.Response)=>{
+        // console.log(req.body);
+        DaysModel.updateMany({$set: {'days': req.body.days}}, (err, days)=>{
+            if (err) console.log(err);
+            else {
+                res.json({'message':'ok'});
+            }
+        })
+    }
+
+    extendDays = (req: express.Request, res: express.Response)=>{
+        DaysModel.updateMany({$inc: {'days': req.body.days}}, (err, data)=>{
+            if (err) console.log(err);
+            else {
+                res.json({'message':'ok'});
+            }
+        })
+    }
+
     
 };

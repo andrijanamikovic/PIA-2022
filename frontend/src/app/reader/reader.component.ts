@@ -7,6 +7,8 @@ import { Took } from '../model/took';
 import { MainService } from '../services/main.service';
 import { TakeService } from '../services/take.service';
 import { MatCardModule } from '@angular/material/card';
+import { User } from '../model/user';
+import { Days } from '../model/days';
 
 
 @Component({
@@ -21,8 +23,8 @@ export class ReaderComponent implements OnInit {
   constructor(private router: Router, private mainService: MainService, private takeService: TakeService) { }
 
   ngOnInit(): void {
-    let current = JSON.parse(localStorage.getItem('currentUser'));
-    if (current == null) {
+    this.current = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.current == null) {
       this.router.navigate(['']);
     }
     localStorage.setItem('flag','true');
@@ -35,13 +37,14 @@ export class ReaderComponent implements OnInit {
       console.log(this.bookOfTheDay);
       this.searched = false;
     })
-    if (current != null) {
-      this.takeService.getBorrowed(current).subscribe((data: Book[]) => {
+    if (this.current != null) {
+      this.takeService.getBorrowed(this.current).subscribe((data: Book[]) => {
         this.borrowedBooks = data;
         console.log("Borrowed books");
         console.log(this.borrowedBooks);
-      
-      this.takeService.taken(current).subscribe((data: Taken[]) => {
+        this.mainService.getDays().subscribe((data: Days)=>{
+          this.days= data[0].days;
+      this.takeService.taken(this.current).subscribe((data: Taken[]) => {
         this.taken = data;
               //hocu da spojim knjigu sa vremenom
       for (let i =0; i<=this.borrowedBooks.length; i++){
@@ -57,7 +60,7 @@ export class ReaderComponent implements OnInit {
             let now = Date.now();
             let diff = Math.floor((now - took.from) / (1000*60*60*24));
             console.log(diff);
-            diff = current.days - diff;
+            diff =  this.days - diff;
             if (diff<0) {
               localStorage.setItem('flag','false');
             }
@@ -69,6 +72,7 @@ export class ReaderComponent implements OnInit {
     }
       })
     })
+  })
   }
   }
 
@@ -81,6 +85,8 @@ export class ReaderComponent implements OnInit {
   clickedBook: Book;
   searched: boolean;
   date: String;
+  current: User;
+  days: number;
 
   searchBook(data) {
     //data.search mi je to sto treba da pretrazim delimicno kao authora ili kao naslov knjige
@@ -102,6 +108,7 @@ export class ReaderComponent implements OnInit {
     console.log("I clicked on book: ");
     console.log(book);
     localStorage.setItem('ClickedBook', book.title);
+    localStorage.setItem('Book', JSON.stringify(book));
     this.router.navigate(['/book']);
   }
 
@@ -123,5 +130,24 @@ export class ReaderComponent implements OnInit {
   history(){
     this.router.navigate(['/history']);
   }
+  isModerator() {
+    if (this.current.type == 2 || this.current.type == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  addNewBook(){
+    this.router.navigate(['/addBook']);
+  }
+
+  getDays() {
+    this.mainService.getDays().subscribe((data: Days)=>{
+      console.log("Dani su bez broja...");
+      console.log(data[0].days);
+      return data.days;
+    })
+    return 12;
+  }
 }

@@ -18,5 +18,11 @@ adminRouter.route('/decline').post(
 adminRouter.route('/addUser').post(
     (req, res)=> new AdminController().addUser(req, res)
 )
+adminRouter.route('/changeDays').post(
+    (req, res)=> new AdminController().changeDays(req, res)
+)
+adminRouter.route('/extendDays').post(
+    (req, res)=> new AdminController().extendDays(req, res)
+)
 
 export default adminRouter;

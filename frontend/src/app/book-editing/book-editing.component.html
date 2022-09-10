@@ -1,0 +1,123 @@
+<body>
+<table ng-bind="book" ng-init="getNewBook()">
+    <tr>
+        <h2 class="library">Edit book data</h2>
+    </tr>
+    <tr>
+        <td>Title:</td>
+        <td>
+            Old title:
+            <output type='text' name='title'>{{book.title}}</output>
+            <br/>
+            New title:
+            <input type='text' name='title' [(ngModel)]='newBook.title'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Subtitle:</td>
+        <td>
+            Old Subtitle:
+            <output type='text' name='subtitle'>{{book.subtitle}}</output>
+            <br/>
+            New Subtitle:
+            <input type='text' name='subtitle' [(ngModel)]='newBook.subtitle'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Author:</td>
+        <td>
+            Old author:
+            <output type='text' name='author'>{{book.author}}</output>
+            <br/>
+            New author:
+            <input type='text' name='author' [(ngModel)]='newBook.author'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Published date:</td>
+        <td>
+            Old publishing date:
+            <output type='text' name='published'>{{book.published}}</output>
+            <br/>
+            New publishing date:
+            <input type='text' name='published' [(ngModel)]='newBook.published'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Publisher:</td>
+        <td>
+            Old publisher:
+            <output type='text' name='publisher'>{{book.publisher}}</output>
+            <br/>
+            New publisher:
+            <input type='text' name='publisher' [(ngModel)]='newBook.publisher'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Pages:</td>
+        <td>
+            Old number of pages:
+            <output type='text' name='pages'>{{book.pages}}</output>
+            <br/>
+            New number of pages:
+            <input type='number' name='pages' [(ngModel)]='newBook.pages'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td>
+            Old description:
+            <output type='text' name='description'>{{book.description}}</output>
+            <br/>
+            New description:
+            <input type='text' name='description' [(ngModel)]='newBook.description'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Website:</td>
+        <td>
+            Old website:
+            <output type='text' name='website'>{{book.website}}</output>
+            <br/>
+            New website:
+            <input type='text' name='website' [(ngModel)]='newBook.website'>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td>Amount:</td>
+        <td>
+            Old amount:
+            <output type='text' name='amount'>{{book.amount}}</output>
+            <br/>
+            New amount:
+            <input type='text' name='amount' [(ngModel)]='newBook.amount'>
+            <br/>
+        </td>
+    </tr>
+    <!-- <tr>
+        <td>Photo:</td>
+        <td>
+            <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
+        </td>
+    </tr> -->
+    <tr>
+        <td colspan='2'>
+            <button (click)='submit()'>submit</button>
+        </td>
+    </tr>
+</table>
+
+
+<div *ngIf="message" class="error">
+{{message}}
+</div>
+
+</body>

@@ -10,5 +10,5 @@ export class User {
     type: number; //1-admin 2-moderator 0-reader
     //picture ????
     taken: number;
-    days: number;
+    // days: number;
 }

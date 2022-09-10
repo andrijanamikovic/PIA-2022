@@ -116,4 +116,44 @@ export class AdminComponent implements OnInit {
 
 
   }
+
+  message2: string;
+
+  days:number = parseInt(localStorage.getItem('days'));
+  extend:number = 0;
+  changeDays() {
+    //set days u bazi
+    console.log("Dani su bez broja");
+    console.log(this.days);
+    this.adminService.changeDays(this.days).subscribe(resp=>{
+      if (resp['message'] == 'ok'){
+        this.message2 = 'Changed';
+      } else {
+        this.message2 = 'Error';
+      }
+    })
+  }
+
+  extendDays(){
+    this.adminService.extend(this.extend).subscribe(resp=>{
+      if (resp['message'] == 'ok'){
+        this.message2 = 'Changed';
+      } else {
+        this.message2 = 'Error';
+      }
+    })
+  }
+
+  editUser(){
+    this.router.navigate(['/adminEditUsers']);
+  }
+
+  editBook(){
+    this.router.navigate(['/adminEditBooks']);
+  }
+
+  addBook(){
+    this.router.navigate(['/addBook']);
+  }
+
 }

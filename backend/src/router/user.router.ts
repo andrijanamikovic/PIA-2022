@@ -19,4 +19,13 @@ userRouter.route('/changePassword').post(
     (req, res)=> new UserController().changePassword(req, res)
 )
 
+userRouter.route('/getAll').get(
+    (req, res)=> new UserController().getAll(req, res)
+)
+
+userRouter.route('/delete').post(
+    (req, res)=> new UserController().delete(req, res)
+)
+
+
 export default userRouter;

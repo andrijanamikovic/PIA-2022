@@ -16,6 +16,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { BookPageComponent } from './book-page/book-page.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { HistoryComponent } from './history/history.component';
+import { BookEditingComponent } from './book-editing/book-editing.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { HistoryComponent } from './history/history.component';
     ProfileComponent,
     BookPageComponent,
     ChangePassComponent,
-    HistoryComponent
+    HistoryComponent,
+    BookEditingComponent,
+    AddBookComponent,
+    EditUserComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,

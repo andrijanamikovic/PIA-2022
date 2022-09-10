@@ -1,0 +1,31 @@
+
+<table>
+    <!-- <h3>Borrowed books</h3> -->
+    <br>
+    <div id="list-th" *ngFor="let n of books">
+        <th>Book</th>
+        <th>Description</th>
+        <th>Action</th>
+        <tr>
+          <td class="book read">
+            <div class="cover">
+              
+                <img src="../../assets/books/{{n.title}}.jpg" (click) = "editBook(n)">
+              
+            </div>
+          </td>
+          <td>
+            <div class="description">
+              <p>{{n.title}}<br>
+                <span>{{n.author}}</span></p>
+            </div>
+          </td>
+          <td>
+            <button (click)="editBook(n)">Edit book</button>
+            <br/>
+            <button *ngIf="borrowed(n)" (click) = "delete(n)">Delete</button>
+            <br/>
+          </td>
+        </tr>
+    </div>
+ </table>

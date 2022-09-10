@@ -1,0 +1,16 @@
+
+<div class="row" *ngFor="let n of users">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <img src={{n.photo}} alt="avatar"
+            class="rounded-circle img-fluid" style="width: 150px;">
+          <h5 class="my-3">{{n.firstname}} {{n.lastname}}</h5>
+          <p class="text-muted mb-1">{{n.username}}</p>
+          <p class="text-muted mb-4">{{n.address}}</p>
+          <button (click) = "edit(n)">Edit</button>
+          <button *ngIf="borrowed(n)" (click) = "delete(n)">Delete</button>
+        </div>
+      </div>
+    </div>
+</div>

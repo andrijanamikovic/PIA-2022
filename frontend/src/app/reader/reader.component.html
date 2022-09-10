@@ -9,7 +9,11 @@
   <input type="text" placeholder="Search.." name="search" ngModel>
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
-
+<br/>
+<br/>
+<button *ngIf="isModerator()" (click)="addNewBook()">Add new book</button>
+<br/>
+<br/>
 <!-- books -->
 
   <div id="large-th" *ngIf="!searched">

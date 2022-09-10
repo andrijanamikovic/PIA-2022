@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { Book } from './model/book';
+import { Days } from './model/days';
 import { User } from './model/user';
 import { MainService } from './services/main.service';
 import { UserService } from './services/user.service';
@@ -19,6 +20,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     localStorage.clear();
+   
+    // localStorage.setItem('days','14');
   }
 
 
