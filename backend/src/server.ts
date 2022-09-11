@@ -5,6 +5,7 @@ import userRouter from './router/user.router';
 import adminRouter from './router/admin.router';
 import mainRouter from './router/main.router';
 import bookRouter from './router/book.router';
+import commentRouter from './router/comment.router';
 
 
 const app = express();
@@ -27,6 +28,8 @@ router.use('', mainRouter);
 router.use('/users', userRouter);
 router.use('/admin', adminRouter);
 router.use('/book', bookRouter);
+router.use('/comment', commentRouter);
+
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

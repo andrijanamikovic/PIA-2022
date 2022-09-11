@@ -29,7 +29,7 @@ export class BooksController {
         TakenModel.find({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id }, (err, data) =>{
             if (err) console.log(err);
             if (data.length != 0) {
-                console.log("taken ", data);
+                // console.log("taken ", data);
                 res.json({ "message": "already taken" });
                 return;
             } else {
