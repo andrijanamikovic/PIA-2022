@@ -10,10 +10,14 @@
             <p class="title">{{clicked.title}}<br>
               <span class="author">{{clicked.author}}</span><br>
               <span class="author">{{clicked.amount-clicked.borrowed}}</span><br>
-              <span class="author">{{clicked.score!=0?clicked.score:null}}</span></p>
+              <span class="author">{{clicked.score!=0?clicked.score:null}}</span></p> 
+              <!-- umesto ocene iz knjige ja treba da racunam prosecnu u odnosu na komentare -->
           </div>
         </div>
       </div>
+      <!--
+       -->
+       
       <!-- tu mu trebaju ispisani komentari -->
     </div>
     <button *ngIf="clicked.amount-clicked.borrowed" (click)="borrow()">Take</button>
@@ -31,5 +35,22 @@
 
   <div *ngIf="message" class="error">
     {{message}}
+</div>
+
+<div *ngIf="hasComments" class="comment">
+  <div *ngFor="let n of comments">
+    <ul class="hash-list cols-auto cols-1-xs pad-30-all align-center text-sm">
+      <li class="comment">
+        <p class="fs-110 font-cond-l" contenteditable="false">Comment: {{n.comment}}</p>
+        <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">User: {{n.user}}</h5>
+        <div>
+
+          <ngb-rating [max]="10" [(rate)]="n.grade" [readonly]="true"></ngb-rating>
+
+        </div>
+        <!-- <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Grade: {{n.grade}}</small> -->
+      </li>
+    </ul>
+  </div>
 </div>
 

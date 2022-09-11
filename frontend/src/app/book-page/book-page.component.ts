@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BookEditingComponent } from '../book-editing/book-editing.component';
 import { Book } from '../model/book';
 import { User } from '../model/user';
+import { Comment } from '../model/comments';
 import { CommentService } from '../services/comment.service';
 import { MainService } from '../services/main.service';
 import { TakeService } from '../services/take.service';
@@ -36,7 +37,14 @@ export class BookPageComponent implements OnInit {
             }
           })
           this.commentService.getAll(this.clicked).subscribe((comm: Comment[]) => {
+            this.comments = comm;
+            if (comm.length!=0){
+              this.hasComments = true;
+            }
             console.log(comm);
+            this.comments.sort((a, b) => {
+              return a.date > b.date ? 1 : -1;
+            })
           })
         }
       })
@@ -49,8 +57,6 @@ export class BookPageComponent implements OnInit {
   message: String;
 
   borrow() {
-    //ovde treba da povecam broj uzetih i negde da napravim da sam ja uzela knjigu u novoj tabeli kako 
-    //koji moj kurac to da uradim zivote
     if (localStorage.getItem('flag') == 'false') {
       this.message = "Have books whit expired deadline, need to give them back first in order to get a new one";
     } else {
@@ -100,5 +106,7 @@ export class BookPageComponent implements OnInit {
   }
 
   comments: Comment[] = [];
+  hasComments: Boolean = false;
+ 
   
 }

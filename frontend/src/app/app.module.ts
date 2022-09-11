@@ -20,6 +20,7 @@ import { BookEditingComponent } from './book-editing/book-editing.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
