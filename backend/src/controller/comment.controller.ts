@@ -1,6 +1,7 @@
 import express from "express"
 import { TakenModel } from "../model/taken";
 import { CommentModel } from "../model/comment";
+import { BookModel } from "../model/book";
 
 
 export class CommentController {
@@ -46,6 +47,12 @@ export class CommentController {
         //setujem sve polako
         
         comment.save().then(resp=>{
+            BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'review': 1 } }, (err, user) => {
+                if (err) console.log(err);
+            });
+            BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'score': req.body.grade } }, (err, user) => {
+                if (err) console.log(err);
+            });
             res.json({"message": "ok"});
         }).catch(err=>{
             console.log(err);

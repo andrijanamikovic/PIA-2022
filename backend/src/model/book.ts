@@ -39,6 +39,10 @@ let Book = new Schema({
     },
     amount: {
         type: Number
+    },
+    review: {
+        type: Number,
+        default: 0
     }
 })
 

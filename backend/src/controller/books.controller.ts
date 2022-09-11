@@ -89,9 +89,7 @@ export class BooksController {
             if (err) console.log(err);
         });
         // console.log("Nadjena knjiga koju ocu da izbacim...");
-        BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'borrowed': -1 } }, (err, user) => {
-            if (err) console.log(err);
-        });
+       
         UserModel.updateOne({ '_id': req.body.user._id }, { $inc: { 'taken': -1 } }, (err, user) => {
             if (err) console.log(err);
         });

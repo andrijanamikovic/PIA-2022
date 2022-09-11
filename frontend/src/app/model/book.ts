@@ -11,4 +11,5 @@ export class Book {
     borrowed: number;
     score:number;
     amount:number;
+    review:number;
 }
