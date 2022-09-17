@@ -43,4 +43,13 @@ export class EditBookComponent implements OnInit {
   borrowed(book: Book) {
     return book.borrowed == 0;
   }
+
+    
+  hasPhoto(user: Book){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
 }

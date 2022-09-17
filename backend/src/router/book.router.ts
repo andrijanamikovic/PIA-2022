@@ -40,7 +40,7 @@ bookRouter.route('/addBook').post(
 )
 
 bookRouter.route('/edit').post(
-    (req, res)=> new BooksController().addBook(req, res)
+    (req, res)=> new BooksController().editBook(req, res)
 )
 
 

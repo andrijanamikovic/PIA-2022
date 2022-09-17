@@ -142,8 +142,8 @@ export class BooksController {
         })
     }
 
-    edit = (req: express.Request, res: express.Response) => {
-        UserModel.updateOne({ '_id': req.body._id}, {$set: {'title': req.body.title ,'subtitle': req.body.subtitle,
+    editBook = (req: express.Request, res: express.Response) => {
+        BookModel.updateOne({ '_id': req.body._id}, {$set: {'title': req.body.title ,'subtitle': req.body.subtitle,
          'author': req.body.author, 'published': req.body.published,'publisher': req.body.publisher, 'photo':req.body.photo,
          'genre': req.body.genre,'language': req.body.language, 'amount':req.body.amount}}, (err, user) => {
             if (err) console.log(err);
