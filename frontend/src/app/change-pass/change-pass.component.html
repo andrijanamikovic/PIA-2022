@@ -1,26 +1,27 @@
+<body>
+  <div class="form-popup" id="myForm">
+      <form class="form-container">
+        <h1>Change password</h1>
+    
+        <td>*Old password: </td>
+        <td>
+            <input type='password' name='oldPassword' [(ngModel)]='oldPassword'>
+        </td>
+        <br/>
+        <td>*New password: </td>
+        <td>
+            <input type='password' name='newPassword' [(ngModel)]='newPassword'>
+        </td>
+        <br/>
+        <td>*Confirm new password: </td>
+        <td>
+            <input type='password' name='confirmPassword' [(ngModel)]='confirmPassword'>
+        </td>
+        <button (click) = "changePassword()" class="btn">Submit</button>
+      </form>
+    </div>
 
-<div class="form-popup" id="myForm">
-    <form class="form-container">
-      <h1>Change password</h1>
-  
-      <td>*Old password: </td>
-      <td>
-          <input type='password' name='oldPassword' [(ngModel)]='oldPassword'>
-      </td>
-      <br/>
-      <td>*New password: </td>
-      <td>
-          <input type='password' name='newPassword' [(ngModel)]='newPassword'>
-      </td>
-      <br/>
-      <td>*Confirm new password: </td>
-      <td>
-          <input type='password' name='confirmPassword' [(ngModel)]='confirmPassword'>
-      </td>
-      <button (click) = "changePassword()" class="btn">Submit</button>
-    </form>
+    <div *ngIf="message" class="error">
+      {{message}}
   </div>
-
-  <div *ngIf="message" class="error">
-    {{message}}
-</div>
+</body>

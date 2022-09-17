@@ -21,6 +21,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserEditingComponent } from './user-editing/user-editing.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BookEditingComponent,
     AddBookComponent,
     EditUserComponent,
-    EditBookComponent
+    EditBookComponent,
+    UserEditingComponent
   ],
   imports: [
     BrowserModule,

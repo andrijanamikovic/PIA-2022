@@ -1,6 +1,7 @@
-import express from "express"
+import express, { response } from "express"
 import { imageModel } from "../model/image";
 import { UserModel, ReviewModel } from "../model/user";
+import multer from "multer"
 
 export class UserController {
     login = (req: express.Request, res: express.Response) => {
@@ -18,6 +19,7 @@ export class UserController {
     register = (req: express.Request, res: express.Response) => {
        
         let user = new UserModel(req.body);
+        console.log("files? ", req);
         //check if someone already have that username or email
         UserModel.findOne({'username': user.username}, (err, user2) => {
             if (err){
@@ -84,9 +86,17 @@ export class UserController {
     }
 
     delete = (req: express.Request, res: express.Response) => {
-        UserModel.deleteOne({'_id':req.body.user._id}, (err, userData)=>{
+        UserModel.deleteOne({'username':req.body.username}, (err, userData)=>{
             if (err) console.log(err);
             else res.json("ok");
+        })
+    }
+
+    edit = (req: express.Request, res: express.Response) => {
+        UserModel.updateOne({ 'username': req.body.username}, {$set: {'firstname': req.body.firstname ,'lastname': req.body.lastname,
+         'phone': req.body.phone, 'email': req.body.email,'address': req.body.address, 'photo':req.body.photo}}, (err, user) => {
+            if (err) console.log(err);
+            else res.json({'message':'ok'});
         })
     }
 

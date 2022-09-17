@@ -35,5 +35,13 @@ bookRouter.route('/delete').post(
     (req, res)=> new BooksController().delete(req, res)
 )
 
+bookRouter.route('/addBook').post(
+    (req, res)=> new BooksController().addBook(req, res)
+)
+
+bookRouter.route('/edit').post(
+    (req, res)=> new BooksController().addBook(req, res)
+)
+
 
 export default bookRouter;

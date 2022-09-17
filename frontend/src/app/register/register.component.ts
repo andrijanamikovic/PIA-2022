@@ -26,6 +26,9 @@ export class RegisterComponent implements OnInit {
 
   message: string;
 
+  file: File;
+  picture:string;
+
   register() {
 
     this.type = 2; //registration only for readers
@@ -66,7 +69,15 @@ export class RegisterComponent implements OnInit {
       this.message = "Wrong email format";
     }
 
-    this.userService.register(this.firstname, this.lastname, this.username, this.password, this.address, this.phone, this.email, this.photo, this.type).subscribe(resp=>{
+    // this.photo = this.photo.replace("data:", "").replace(/^.+,/, "");
+
+    if(!this.picture ||this.picture.length == 0){
+  
+      this.picture = ""
+  
+    }
+    
+    this.userService.register(this.firstname, this.lastname, this.username, this.password, this.address, this.phone, this.email, this.picture, this.type).subscribe(resp=>{
       if (resp['message'] == 'ok'){
         this.message = 'User send for review';
       } else if (resp['message'] == 'username') {
@@ -81,4 +92,23 @@ export class RegisterComponent implements OnInit {
 
   }
 
+
+  saveImage(event){
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+    let file = event.target.files[0];
+
+    let img = new Image();
+
+    img.src = window.URL.createObjectURL( file );
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        window.URL.revokeObjectURL( img.src );
+        this.picture = reader.result as string;   
+      };
+    }
+  }
+
 }
+

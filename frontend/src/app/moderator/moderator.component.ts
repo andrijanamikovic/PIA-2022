@@ -21,4 +21,8 @@ export class ModeratorComponent implements OnInit {
     }
   }
 
+  addBook(){
+    this.router.navigate(['/addBook']);
+  }
+
 }

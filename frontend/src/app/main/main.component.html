@@ -19,7 +19,7 @@
     </a>
   </li>
 </ul>
-</div> --> 
+</div> -->
 <!-- 
 <table>
   <tr>
@@ -34,53 +34,59 @@
 
 <!-- search -->
 
-<!-- Load icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+  <!-- Load icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- The form -->
-<form  #searchData = "ngForm" (ngSubmit) = "searchBook(searchData.value)" class="search">
-  <input type="text" placeholder="Search.." name="search" ngModel>
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
+  <!-- The form -->
+  <form #searchData="ngForm" (ngSubmit)="searchBook(searchData.value)" class="search">
+    <input type="text" placeholder="Search.." name="search" ngModel>
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
 
-<!-- books -->
+  <!-- books -->
 
-<div id="large-th"  *ngIf="!searched">
-  <div class="container-books">
-    <h1>Top three books</h1>
-    <br>
-    <div id="list-th" *ngFor="let n of top3">
-      <div class="book read">
-        <div class="cover">
-          <img src="../../assets/books/{{n.title}}.jpg">
-        </div>
-        <div class="description">
-          <p class="title">{{n.title}}<br>
-            <span class="author">{{n.author}}</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="large-th" *ngIf="searched">
-  <div class="container-books">
-    <h1>Searched books</h1>
-    <br>
-    <div id="list-th" *ngFor="let n of searchedBooks">
-      <div class="book-searched read">
-        <div class="cover">
-          <img src="../../assets/books/{{n.title}}.jpg">
-        </div>
-        <div class="description">
-          <p class="title">{{n.title}}<br>
-            <span class="author">{{n.author}}</span></p>
+  <div id="large-th" *ngIf="!searched">
+    <div class="container-books">
+      <h1>Top three books</h1>
+      <br>
+      <div id="list-th" *ngFor="let n of top3">
+        <div class="book read">
+          <div class="cover">
+            <img  *ngIf = "hasPhoto(n)" src={{n.photo}}>
+            <img  *ngIf = "!hasPhoto(n)" src="../../assets/books/book.jpg">
+          </div>
+          <div class="description">
+            <p class="title">{{n.title}}<br>
+              <span class="author">{{n.author}}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-  <!-- <footer class="footer">
+  <div id="large-th" *ngIf="searched">
+    <div class="container-books">
+      <h1>Searched books</h1>
+      <br>
+      <div id="list-th" *ngFor="let n of searchedBooks">
+        <div class="book-searched read">
+          <div class="cover">
+            <img  *ngIf = "hasPhoto(n)" src={{n.photo}}>
+            <img  *ngIf = "!hasPhoto(n)" src="../../assets/books/book.jpg">
+          </div>
+          <div class="description">
+            <p class="title">{{n.title}}<br>
+              <span class="author">{{n.author}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- <footer class="footer">
     <a routerLink="/login"> Login page</a>
 </footer> -->

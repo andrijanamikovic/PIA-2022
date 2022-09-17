@@ -31,25 +31,17 @@ let User = new Schema({
     email:{
         type: String,
         required: true,
-        // unique: true,
-        // dropDups: true
     },
     type: {
         type: Number,
         required: true
     },
     photo: {
-        data:Buffer,
         type: String
     },
     taken: {
         type: Number
     }
-    // ,
-    // days: {
-    //     type: Number
-    // }
-    // what to do with photo???
 })
 
 const UserModel = mongoose.model('UserModel', User, 'users');

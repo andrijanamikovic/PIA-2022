@@ -30,6 +30,7 @@ export class EditBookComponent implements OnInit {
   }
 
   delete(book: Book) {
+    console.log(book);
     this.adminService.delete(book).subscribe(resp=>{
       if (resp['message'] == 'ok'){
         this.ngOnInit();

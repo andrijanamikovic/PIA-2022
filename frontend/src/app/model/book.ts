@@ -5,11 +5,12 @@ export class Book {
     author: string;
     published: string;
     publisher: string;
-    pages: number;
-    description: string;
-    website: string;
+    // pages: number;
+    genre: string;
+    language: string;
     borrowed: number;
     score:number;
     amount:number;
     review:number;
+    photo:string;
 }

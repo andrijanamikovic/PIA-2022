@@ -21,18 +21,19 @@ let Book = new Schema({
     publisher: {
         type: String
     }, 
-    pages: {
-        type: Number,
-        required: true
-    },
-    description:{
+    // pages: {
+    //     type: Number,
+    //     required: true
+    // },
+    genre:{
         type: String
     },
-    website: {
+    language: {
         type: String
     },
     borrowed: {
-       type: Number
+       type: Number,
+       default: 0
     },
     score: {
         type:Number
@@ -43,6 +44,10 @@ let Book = new Schema({
     review: {
         type: Number,
         default: 0
+    }, 
+    photo: {
+        type: String,
+        default: ""
     }
 })
 

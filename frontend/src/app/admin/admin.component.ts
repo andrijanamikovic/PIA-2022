@@ -18,6 +18,8 @@ export class AdminComponent implements OnInit {
       this.allRequests = data;
     } )
 
+
+
     
     let current = JSON.parse(localStorage.getItem('currentUser'));
     if (current == null) {
@@ -156,4 +158,11 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/addBook']);
   }
 
+  hasPhoto(user: User){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
 }

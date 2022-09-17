@@ -21,4 +21,12 @@ export class ProfileComponent implements OnInit {
 
   user: User;
 
+  hasPhoto(user: User){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
+
 }

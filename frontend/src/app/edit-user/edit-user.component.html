@@ -1,16 +1,50 @@
+<body>
+   <!-- Adming editing users -->
 
-<div class="row" *ngFor="let n of users">
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body text-center">
-          <img src={{n.photo}} alt="avatar"
-            class="rounded-circle img-fluid" style="width: 150px;">
-          <h5 class="my-3">{{n.firstname}} {{n.lastname}}</h5>
-          <p class="text-muted mb-1">{{n.username}}</p>
-          <p class="text-muted mb-4">{{n.address}}</p>
-          <button (click) = "edit(n)">Edit</button>
-          <button *ngIf="borrowed(n)" (click) = "delete(n)">Delete</button>
-        </div>
-      </div>
-    </div>
-</div>
+   <body>
+    <table>
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Username</th>
+                <th>Photo</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let n of users">
+                <td>
+                    <output type='text' name='FirstName' value="n.firstname">{{n.firstname}}</output>
+                </td>
+                <td>
+                    <output type='text' name='LastName'>{{n.lastname}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Username'>{{n.username}}</output>
+                </td>
+                <td>
+                    <img *ngIf="hasPhoto(n)" src={{n.photo}} width="100px" height="100px">
+                    <img *ngIf="!hasPhoto(n)" src="../../assets/avatars/avatar.png" width="100px" height="100px">
+                </td>
+                <td>
+                    <output type='text' name='Email'>{{n.email}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Phone'>{{n.phone}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Address'>{{n.address}}</output>
+                </td>
+                <td colspan="3">
+                    <button (click)='edit(n)'>Edit User</button>
+                </td>
+                <td colspan="3">
+                    <button *ngIf = "canDelete(n)" (click)='delete(n)'>Delete User</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>

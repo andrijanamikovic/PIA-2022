@@ -6,11 +6,20 @@ import adminRouter from './router/admin.router';
 import mainRouter from './router/main.router';
 import bookRouter from './router/book.router';
 import commentRouter from './router/comment.router';
+import bodyParser from 'body-parser';
+import { UserController } from './controller/user.controller';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json({ limit: '100mb' })); 
+// app.use(express.urlencoded({ extended: true }));
+// const multer = require("multer");
+// app.use(multer);
+// const upload = multer({ dest: "uploads/" });
+
+
 //
 // var bodyParser = require('body-parser');
 
@@ -22,7 +31,6 @@ const connection = mongoose.connection
 connection.once('open', ()=>{console.log('db connected')})
 
 const router = express.Router();
-
 
 router.use('', mainRouter);
 router.use('/users', userRouter);

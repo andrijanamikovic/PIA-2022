@@ -1,71 +1,75 @@
 <!-- for changing password -->
-    <table>
-        <tr>
-            <h2 class="library">Register</h2>
-        </tr>
-        <tr>
-            <td>*First name:</td>
-            <td>
-                <input type='text' name='FirstName' [(ngModel)]='firstname'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Last name:</td>
-            <td>
-                <input type='text' name='LastName' [(ngModel)]='lastname'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Username:</td>
-            <td>
-                <input type='text' name='Username' [(ngModel)]='username'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Password:</td>
-            <td>
-                <input type='password' name='Password' [(ngModel)]='password'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Confirm password:</td>
-            <td>
-                <input type='password' name='confirmation' [(ngModel)]='confirmation'>
-            </td>
-        </tr>
-        <tr>
-            <td>Photo:</td>
-            <td>
-                <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Email:</td>
-            <td>
-                <input type='text' name='email' [(ngModel)]='email'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Phone:</td>
-            <td>
-                <input type='text' name='phone' [(ngModel)]='phone'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Address</td>
-            <td>
-                <input type='text' name='address' [(ngModel)]='address'>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'>
-                <button (click)='register()'>Register</button>
-            </td>
-        </tr>
-    </table>
 
-    
-<div *ngIf="message" class="error">
-    {{message}}
-</div>
+<body>
+    <form  enctype="multipart/form-data">
+        <table>
+            <tr>
+                <h2 class="library">Register</h2>
+            </tr>
+            <tr>
+                <td>*First name:</td>
+                <td>
+                    <input type='text' name='FirstName' [(ngModel)]='firstname'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Last name:</td>
+                <td>
+                    <input type='text' name='LastName' [(ngModel)]='lastname'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Username:</td>
+                <td>
+                    <input type='text' name='Username' [(ngModel)]='username'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Password:</td>
+                <td>
+                    <input type='password' name='Password' [(ngModel)]='password'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Confirm password:</td>
+                <td>
+                    <input type='password' name='confirmation' [(ngModel)]='confirmation'>
+                </td>
+            </tr>
+            <tr>
+                <td>Photo:</td>
+                <td>
+                    <input type='file' accept="image/png, image/jpg" name='file'  (change)="saveImage($event)" id="slika"
+                        class="form-control-file border" [(ngModel)]='photo'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Email:</td>
+                <td>
+                    <input type='text' name='email' [(ngModel)]='email'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Phone:</td>
+                <td>
+                    <input type='text' name='phone' [(ngModel)]='phone'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Address</td>
+                <td>
+                    <input type='text' name='address' [(ngModel)]='address'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <button (click)='register()'>Register</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 
+    <div *ngIf="message" class="error">
+        {{message}}
+    </div>
+</body>

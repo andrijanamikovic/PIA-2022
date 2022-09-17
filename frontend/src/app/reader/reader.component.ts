@@ -150,4 +150,13 @@ export class ReaderComponent implements OnInit {
     })
     return 12;
   }
+
+  hasPhoto(user: Book){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
+  
 }

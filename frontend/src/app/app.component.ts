@@ -35,13 +35,21 @@ export class AppComponent {
     return this.router.navigate(['/change']);
   } 
 
+  current:User;
 
   isLogedIn(){
-    let current = JSON.parse(localStorage.getItem('currentUser'));
-    if (current == null) {
+    this.current = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.current == null) {
       return false;
     }
     else return true;
+  }
+  hasPhoto(user: User){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
   }
 
   back(){

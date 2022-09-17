@@ -99,6 +99,7 @@ export class BookPageComponent implements OnInit {
     this.commentService.addComment(this.comment, this.grade, this.current, this.clicked).subscribe(resp => {
       if (resp['message'] == 'ok') {
         this.can = false;
+        this.ngOnInit();
       } else {
         this.can = true;
       }
@@ -109,4 +110,11 @@ export class BookPageComponent implements OnInit {
   hasComments: Boolean = false;
  
   
+  hasPhoto(user: Book){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
 }

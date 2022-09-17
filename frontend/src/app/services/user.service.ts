@@ -40,8 +40,7 @@ export class UserService {
       phone: phone,
       email: email,
       photo: photo,
-      taken: 0,
-      days: 14
+      taken: 0
     }
     return this.http.post(`${this.uri}/users/register`, data);
 
@@ -62,8 +61,34 @@ export class UserService {
 
   delete(user){
     const data = {
-      user:user
+      firstname: user.firstname,
+      lastname: user.lastname,
+      username: user.username,
+      password: user.password,
+      type: user.type,
+      address:user.address,
+      phone: user.phone,
+      email: user.email,
+      photo: user.photo,
+      taken: user.taken
     }
     return this.http.post(`${this.uri}/users/delete`, data)
+  }
+
+  edit(user) {
+    const data = {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      username: user.username,
+      password: user.password,
+      type: user.type,
+      address:user.address,
+      phone: user.phone,
+      email: user.email,
+      photo: user.photo,
+      taken: user.taken
+    }
+
+    return this.http.post(`${this.uri}/users/edit`, data)
   }
 }

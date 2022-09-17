@@ -28,16 +28,19 @@ export class EditUserComponent implements OnInit {
 
 
   edit(user: User) {
-    //da me tipa baci na profil gde moze sve ono da edituje admin
+    console.log("Koji ti kurac???");
+    localStorage.setItem('User',  JSON.stringify(user));
+    this.router.navigate(['userEditing']);
   }
 
   delete(user: User){
     
     this.userService.delete(user).subscribe(resp=>{
       if (resp['message'] == 'ok'){
+        this.users = [];
         this.ngOnInit();
       } else {
-        
+        // this.message = 'not deleted';
       }
     })
   }
@@ -45,5 +48,18 @@ export class EditUserComponent implements OnInit {
   borrowed(user: User){
     return user.taken == 0;
   }
+
+  hasPhoto(user: User){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
+
+  canDelete(user: User){
+    return user.taken == 0;
+  }
+
 
 }

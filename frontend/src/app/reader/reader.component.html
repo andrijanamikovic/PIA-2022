@@ -1,4 +1,4 @@
-
+<body>
 <!-- search -->
 
 <!-- Load icon library -->
@@ -23,7 +23,8 @@
         <div id="list-th"  ng-bind="bookOfTheDay">
           <div class="book read">
             <div class="cover">
-              <img src="../../assets/books/{{bookOfTheDay.title}}.jpg"  (click)= "showBook(bookOfTheDay)">
+              <img  *ngIf = "hasPhoto(bookOfTheDay)" src={{bookOfTheDay.photo}} (click)= "showBook(bookOfTheDay)">
+              <img  *ngIf = "!hasPhoto(bookOfTheDay)" src="../../assets/books/book.jpg" (click)= "showBook(bookOfTheDay)">
             </div>
             <div class="description">
               <p class="title">{{bookOfTheDay.title}}<br>
@@ -45,7 +46,8 @@
                 <td class="book read">
                   <div class="cover">
                     
-                      <img src="../../assets/books/{{n.book.title}}.jpg" (click) = "showBook(n.book)">
+                    <img  *ngIf = "hasPhoto(n.book)" src={{n.book.photo}} (click)= "showBook(n.book)">
+                    <img  *ngIf = "!hasPhoto(n.book)" src="../../assets/books/book.jpg" (click)= "showBook(n.book)">
                     
                   </div>
                 </td>
@@ -78,7 +80,8 @@
       <div id="list-th" *ngFor="let n of searchedBooks">
         <div class="book read">
           <div class="cover">
-            <img src="../../assets/books/{{n.title}}.jpg" (click) = "showBook(n)">
+            <img  *ngIf = "hasPhoto(n)" src={{n.photo}} (click)= "showBook(n)">
+            <img  *ngIf = "!hasPhoto(n)" src="../../assets/books/book.jpg" (click)= "showBook(n)">
           </div>
           <div class="description">
             <p class="title">{{n.title}}<br>
@@ -92,6 +95,4 @@
   <button (click) = 'history()'>History</button>
   
 
-<footer class="footer">
-    <a routerLink=""> Login page</a>
-</footer>
+</body>

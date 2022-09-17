@@ -43,4 +43,12 @@ export class MainComponent implements OnInit {
       }
     })
   }
+
+  hasPhoto(user: Book){
+    if (user.photo=="")
+      return false;
+    else {
+      return true;
+    }
+  }
 }

@@ -7,81 +7,80 @@
             <td>Title:</td>
             <td>
                 <input type='text' name='title' [(ngModel)]='newBook.title'>
-                <br/>
+                <br />
             </td>
         </tr>
         <tr>
             <td>Subtitle:</td>
             <td>
                 <input type='text' name='subtitle' [(ngModel)]='newBook.subtitle'>
-                <br/>
+                <br />
             </td>
         </tr>
         <tr>
             <td>Author:</td>
             <td>
                 <input type='text' name='author' [(ngModel)]='newBook.author'>
-                <br/>
+                <br />
             </td>
         </tr>
         <tr>
             <td>Published date:</td>
             <td>
                 <input type='text' name='published' [(ngModel)]='newBook.published'>
-                <br/>
+                <br />
             </td>
         </tr>
         <tr>
             <td>Publisher:</td>
             <td>
                 <input type='text' name='publisher' [(ngModel)]='newBook.publisher'>
-                <br/>
+                <br />
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>Pages:</td>
             <td>
                 <input type='number' name='pages' [(ngModel)]='newBook.pages'>
                 <br/>
             </td>
-        </tr>
+        </tr> -->
         <tr>
-            <td>Description:</td>
+            <td>Genre:</td>
             <td>
-                <input type='text' name='description' [(ngModel)]='newBook.description'>
-                <br/>
+                <input type='text' name='genre' [(ngModel)]='newBook.genre'>
+                <br />
             </td>
         </tr>
         <tr>
-            <td>Website:</td>
+            <td>Language:</td>
             <td>
-                <input type='text' name='website' [(ngModel)]='newBook.website'>
-                <br/>
+                <input type='text' name='language' [(ngModel)]='newBook.language'>
+                <br />
             </td>
         </tr>
         <tr>
             <td>Amount:</td>
             <td>
                 <input type='text' name='amount' [(ngModel)]='newBook.amount'>
-                <br/>
+                <br />
             </td>
         </tr>
-        <!-- <tr>
-            <td>Photo:</td>
-            <td>
-                <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
-            </td>
-        </tr> -->
+        <td>Photo:</td>
+        <td>
+            <input type='file' accept="image/png, image/jpg" name='file'  (change)="saveImage($event)" id="slika"
+                class="form-control-file border" [(ngModel)]='newBook.photo'>
+        </td>
         <tr>
             <td colspan='2'>
                 <button (click)='submit()'>submit</button>
             </td>
         </tr>
     </table>
-    
-    
+
+
     <div *ngIf="message" class="error">
-    {{message}}
+        {{message}}
     </div>
-    
-    </body>
+
+</body>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../model/book';
 import { User } from '../model/user';
-import { MainService } from '../services/main.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-book-editing',
@@ -11,7 +11,7 @@ import { MainService } from '../services/main.service';
 })
 export class BookEditingComponent implements OnInit {
 
-  constructor(private mainService: MainService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.current = JSON.parse(localStorage.getItem('currentUser'));
@@ -22,8 +22,6 @@ export class BookEditingComponent implements OnInit {
       this.router.navigate(['']);
     }
     this.book = JSON.parse(localStorage.getItem('Book'));
-    console.log("Book in editing: ");
-    console.log(this.book);
   }
 
   book: Book;
@@ -34,22 +32,48 @@ export class BookEditingComponent implements OnInit {
 
   getNewBook(){
     this.book = JSON.parse(localStorage.getItem('Book'));
-    console.log("Book in editing: ");
-    
-    console.log(this.book);
   }
 
-  submit() {
-    //fali mi logika za submit nove knjige
-    //moram da vidim sta da radim za sliku
-    
-      
+  submit() { 
     Object.keys(this.book).forEach(i=>{
       if (this.newBook[i] == undefined) {
         this.newBook[i] = this.book[i];
       }
     })
-    console.log("Submit: ");
-    console.log(this.newBook);
+    if(!this.picture ||this.picture.length == 0){
+  
+      this.picture = "";
+  
+    } 
+
+    this.newBook.photo = this.picture;
+
+
+    this.adminService.edit(this.newBook).subscribe(resp=>{
+      if (resp['message'] == 'ok'){
+        this.message = 'Book edited';
+      } else {
+        this.message = 'Error in editing book';
+      }
+    })
+  }
+
+  picture:string;
+
+  saveImage(event){
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+    let file = event.target.files[0];
+
+    let img = new Image();
+
+    img.src = window.URL.createObjectURL( file );
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        window.URL.revokeObjectURL( img.src );
+        this.picture = reader.result as string;   
+      };
+    }
   }
 }

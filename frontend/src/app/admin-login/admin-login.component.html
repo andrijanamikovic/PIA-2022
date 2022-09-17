@@ -1,15 +1,15 @@
-<body class = "wrapper">
+<body class="wrapper">
     <table class="logIn">
         <tr>
             <td class="name">Username: </td>
             <td>
-                <input type="text" name = "username" [(ngModel)]="username">
+                <input type="text" name="username" [(ngModel)]="username">
             </td>
         </tr>
         <tr>
             <td class="name">Password: </td>
             <td>
-                <input type="password" name = "password" [(ngModel)]="password">
+                <input type="password" name="password" [(ngModel)]="password">
             </td>
         </tr>
         <tr>
@@ -18,16 +18,13 @@
             </td>
         </tr>
     </table>
-    
-    
-    
+
+
+
     <div *ngIf="message" class="error">
         {{message}}
     </div>
-    
-    <br/>
-    <br/>
-    </body>
-    
-    
-    
+<!-- 
+    <br />
+    <br /> -->
+</body>

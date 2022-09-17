@@ -28,4 +28,9 @@ userRouter.route('/delete').post(
 )
 
 
+userRouter.route('/edit').post(
+    (req, res)=> new UserController().edit(req, res)
+)
+
+
 export default userRouter;

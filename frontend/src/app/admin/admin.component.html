@@ -1,148 +1,149 @@
-
 <!-- Admin approving user -->
+
 <body>
     <table>
         <thead>
-        <tr>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Username</th>
-            <th>Photo</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-        </tr>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Username</th>
+                <th>Photo</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
         </thead>
         <tbody>
-        <tr  *ngFor="let n of allRequests">
-            <td>
-                <output type='text' name='FirstName' value="n.firstname">{{n.firstname}}</output>
-            </td>
-            <td>
-                <output type='text' name='LastName'>{{n.lastname}}</output>
-            </td>
-            <td>
-                <output type='text' name='Username'>{{n.username}}</output>
-            </td>
-            <td>
-                <output type='file' name='photo'>{{n.photo}}</output>
-            </td>
-            <td>
-                <output type='text' name='Email'>{{n.email}}</output>
-            </td>
-            <td>
-                <output type='text' name='Phone'>{{n.phone}}</output>
-            </td>
-            <td>
-                <output type='text' name='Address'>{{n.address}}</output>
-            </td>
-            <td colspan="3">
-                <button  (click) = 'approve(n.username)'>Approve</button>
-            </td>
-            <td colspan="3">
-                <button  (click) = 'decline(n.username)'>Decline</button>
-            </td>
-        </tr>
-    </tbody>
+            <tr *ngFor="let n of allRequests">
+                <td>
+                    <output type='text' name='FirstName' value="n.firstname">{{n.firstname}}</output>
+                </td>
+                <td>
+                    <output type='text' name='LastName'>{{n.lastname}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Username'>{{n.username}}</output>
+                </td>
+                <td>
+                    <img *ngIf="hasPhoto(n)" src={{n.photo}} width="100px" height="100px">
+                    <img *ngIf="!hasPhoto(n)" src="../../assets/avatars/avatar.png" width="100px" height="100px">
+                </td>
+                <td>
+                    <output type='text' name='Email'>{{n.email}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Phone'>{{n.phone}}</output>
+                </td>
+                <td>
+                    <output type='text' name='Address'>{{n.address}}</output>
+                </td>
+                <td colspan="3">
+                    <button (click)='approve(n.username)'>Approve</button>
+                </td>
+                <td colspan="3">
+                    <button (click)='decline(n.username)'>Decline</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
+   
 
-    <!-- Admin adding user -->
-    <table>
-        <tr>
-            <h2 class="library">Register a new user</h2>
-        </tr>
-        <tr>
-            <td>*First name:</td>
-            <td>
-                <input type='text' name='FirstName' [(ngModel)]='firstname'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Last name:</td>
-            <td>
-                <input type='text' name='LastName' [(ngModel)]='lastname'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Username:</td>
-            <td>
-                <input type='text' name='Username' [(ngModel)]='username'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Password:</td>
-            <td>
-                <input type='password' name='Password' [(ngModel)]='password'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Confirm password:</td>
-            <td>
-                <input type='password' name='confirmation' [(ngModel)]='confirmation'>
-            </td>
-        </tr>
-        <tr>
-            <td>Photo:</td>
-            <td>
-                <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Email:</td>
-            <td>
-                <input type='text' name='email' [(ngModel)]='email'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Phone:</td>
-            <td>
-                <input type='text' name='phone' [(ngModel)]='phone'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Address</td>
-            <td>
-                <input type='text' name='address' [(ngModel)]='address'>
-            </td>
-        </tr>
-        <tr>
-            <td>*Type</td>
-            <td>
-                <label for="type">Select a type: </label>
-                <select name="type" id = "type" [(ngModel)]="type">
-                    <option value="0">Reader</option>
-                    <option value="2">Moderator</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'>
-                <button (click)='addUser()'>Add User</button>
-            </td>
-        </tr>
-    </table>
-    <div *ngIf="message" class="error">
-        {{message}}
-    </div>
+        <!-- Admin adding user -->
+        <table>
+            <tr>
+                <h2 class="library">Register a new user</h2>
+            </tr>
+            <tr>
+                <td>*First name:</td>
+                <td>
+                    <input type='text' name='FirstName' [(ngModel)]='firstname'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Last name:</td>
+                <td>
+                    <input type='text' name='LastName' [(ngModel)]='lastname'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Username:</td>
+                <td>
+                    <input type='text' name='Username' [(ngModel)]='username'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Password:</td>
+                <td>
+                    <input type='password' name='Password' [(ngModel)]='password'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Confirm password:</td>
+                <td>
+                    <input type='password' name='confirmation' [(ngModel)]='confirmation'>
+                </td>
+            </tr>
+            <tr>
+                <td>Photo:</td>
+                <td>
+                    <input type='file' accept="image/*" name='photo' [(ngModel)]='photo'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Email:</td>
+                <td>
+                    <input type='text' name='email' [(ngModel)]='email'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Phone:</td>
+                <td>
+                    <input type='text' name='phone' [(ngModel)]='phone'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Address</td>
+                <td>
+                    <input type='text' name='address' [(ngModel)]='address'>
+                </td>
+            </tr>
+            <tr>
+                <td>*Type</td>
+                <td>
+                    <label for="type">Select a type: </label>
+                    <select name="type" id="type" [(ngModel)]="type">
+                        <option value="0">Reader</option>
+                        <option value="2">Moderator</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <button (click)='addUser()'>Add User</button>
+                </td>
+            </tr>
+        </table>
+        <div *ngIf="message" class="error">
+            {{message}}
+        </div>
 
-    <div>
-        How long they can borrow
-        <input type="number" [(ngModel)]="days">
-        <button (click)="changeDays()">Submit</button>
-    </div>
-    <div>
-        Extend deadline by
-        <input type="number" [(ngModel)]="extend">
-        <button (click)="extendDays()">Submit</button>
-    </div>
+        <div>
+            How long they can borrow
+            <input type="number" [(ngModel)]="days">
+            <button (click)="changeDays()">Submit</button>
+        </div>
+        <div>
+            Extend deadline by
+            <input type="number" [(ngModel)]="extend">
+            <button (click)="extendDays()">Submit</button>
+        </div>
 
-    <div *ngIf="message2" class="error">
-        {{message2}}
-    </div>
+        <div *ngIf="message2" class="error">
+            {{message2}}
+        </div>
 
-    <br/>
-    <button (click)="editBook()">Edit book</button>
-    <button (click)="editUser()">Edit user</button>
-    <button (click)="addBook()">Add a new book</button>
-</body>
-
+        <br />
+        <button (click)="editBook()">Edit book</button>
+        <button (click)="editUser()">Edit/Delete user</button>
+        <button (click)="addBook()">Add a new book</button>
+    </body>

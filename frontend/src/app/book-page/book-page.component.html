@@ -1,59 +1,61 @@
-<div id="large-th">
-    <div class="container-books">
-      <br>
-      <div id="list-th"  ng-bind="clicked">
-        <div class="book read">
-          <div class="cover">
-            <img src="../../assets/books/{{clicked.title}}.jpg">
-          </div>
-          <div class="description">
-            <p class="title">{{clicked.title}}<br>
-              <span class="author">{{clicked.author}}</span><br>
-              <span class="author">Left: {{clicked.amount-clicked.borrowed}}</span><br>
-              <span class="author">Score: {{clicked.score!=0?clicked.score/clicked.review:null}}</span></p> 
-              <!-- umesto ocene iz knjige ja treba da racunam prosecnu u odnosu na komentare -->
+<body>
+  <div id="large-th">
+      <div class="container-books">
+        <br>
+        <div id="list-th"  ng-bind="clicked">
+          <div class="book read">
+            <div class="cover">
+              <img  *ngIf = "hasPhoto(clicked)" src={{clicked.photo}}>
+              <img  *ngIf = "!hasPhoto(clicked)" src="../../assets/books/book.jpg">
+            </div>
+            <div class="description">
+              <p class="title">{{clicked.title}}<br>
+                <span class="author">{{clicked.author}}</span><br>
+                <span class="author">Left: {{clicked.amount-clicked.borrowed}}</span><br>
+                <span class="author">Score: {{clicked.score!=0?clicked.score/clicked.review:null}}</span></p> 
+                <!-- umesto ocene iz knjige ja treba da racunam prosecnu u odnosu na komentare -->
+            </div>
           </div>
         </div>
+        <!--
+        -->
+        
+        <!-- tu mu trebaju ispisani komentari -->
       </div>
-      <!--
-       -->
-       
-      <!-- tu mu trebaju ispisani komentari -->
+      <button *ngIf="clicked.amount-clicked.borrowed" (click)="borrow()">Take</button>
+      <br/>
+      <button *ngIf="isModerator()" (click)="editData()">Edit data</button>
+      <br/>
+      <div *ngIf="canComment()" >
+        Comment:
+        <input type='text' name='comment' [(ngModel)]='comment' width="100%" maxlength="1000"> 
+        Grade (between 1 and 10):
+        <input type='number' name='grade' [(ngModel)]='grade' max="10" min="0"> 
+        <button (click)="addComment()">Add comment</button>
+      </div>
     </div>
-    <button *ngIf="clicked.amount-clicked.borrowed" (click)="borrow()">Take</button>
-    <br/>
-    <button *ngIf="isModerator()" (click)="editData()">Edit data</button>
-    <br/>
-    <div *ngIf="canComment()" >
-      Comment:
-      <input type='text' name='comment' [(ngModel)]='comment' width="100%" maxlength="1000"> 
-      Grade (between 1 and 10):
-      <input type='number' name='grade' [(ngModel)]='grade' max="10" min="0"> 
-      <button (click)="addComment()">Add comment</button>
-    </div>
+
+    <div *ngIf="message" class="error">
+      {{message}}
   </div>
 
-  <div *ngIf="message" class="error">
-    {{message}}
-</div>
+  <div *ngIf="hasComments" class="comment">
+    <div *ngFor="let n of comments">
+      <ul class="hash-list cols-auto cols-1-xs pad-30-all align-center text-sm">
+        <li class="comment">
+          <p class="fs-110 font-cond-l" contenteditable="false">Comment: {{n.comment}}</p>
+          <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">User: {{n.user}}</h5>
+          <div>
 
-<div *ngIf="hasComments" class="comment">
-  <div *ngFor="let n of comments">
-    <ul class="hash-list cols-auto cols-1-xs pad-30-all align-center text-sm">
-      <li class="comment">
-        <p class="fs-110 font-cond-l" contenteditable="false">Comment: {{n.comment}}</p>
-        <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">User: {{n.user}}</h5>
-        <div>
+            <ngb-rating [max]="10" [(rate)]="n.grade" [readonly]="true"></ngb-rating>
 
-          <ngb-rating [max]="10" [(rate)]="n.grade" [readonly]="true"></ngb-rating>
-
-        </div>
-        <!-- <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Grade: {{n.grade}}</small> -->
-      </li>
-    </ul>
+          </div>
+          <!-- <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Grade: {{n.grade}}</small> -->
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
-<div *ngIf="!hasComments">
-  <h5>This book still doesn't have any comments or scores.</h5>
-</div>
-
+  <div *ngIf="!hasComments">
+    <h5>This book still doesn't have any comments or scores.</h5>
+  </div>
+</body>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Book } from '../model/book';
 
 @Injectable({
   providedIn: 'root'
@@ -58,10 +59,57 @@ export class AdminService {
     return this.http.post(`${this.uri}/admin/extendDays`, data);
   }
 
-  delete(book){
+  delete(book: Book){
     const data = {
-      book:book
+      _id: book._id,
+      title: book.title,
+      subtitle: book.subtitle,
+      author: book.author,
+      published: book.published,
+      publisher: book.publisher,
+      genre: book.genre,
+      language: book.language,
+      amount: book.amount,
+      photo:book.photo
     }
     return this.http.post(`${this.uri}/book/delete`, data);
+  }
+
+  addBook(book: Book){
+    console.log(book);
+    const data = {
+      title: book.title,
+      subtitle: book.subtitle,
+      author: book.author,
+      published: book.published,
+      publisher: book.publisher,
+      genre: book.genre,
+      language: book.language,
+      amount: book.amount,
+      photo:book.photo
+    }
+    return this.http.post(`${this.uri}/book/addBook`, data);
+
+  }
+
+  getAllUsers(){
+    return this.http.get(`${this.uri}/admin/getAllUsers`);
+  }
+
+  edit(book) {
+    const data = {
+      _id: book._id,
+      title: book.title,
+      subtitle: book.subtitle,
+      author: book.author,
+      published: book.published,
+      publisher: book.publisher,
+      genre: book.genre,
+      language: book.language,
+      amount: book.amount,
+      photo:book.photo
+    }
+
+    return this.http.post(`${this.uri}/book/edit`, data)
   }
 }

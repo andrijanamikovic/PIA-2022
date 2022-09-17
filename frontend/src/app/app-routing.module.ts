@@ -15,6 +15,7 @@ import { ModeratorComponent } from './moderator/moderator.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReaderComponent } from './reader/reader.component';
 import { RegisterComponent } from './register/register.component';
+import { UserEditingComponent } from './user-editing/user-editing.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path: "editBook", component: BookEditingComponent},
   {path: "addBook", component: AddBookComponent},
   {path: "adminEditBooks", component: EditBookComponent},
-  {path: "adminEditUsers", component: EditUserComponent}
+  {path: "adminEditUsers", component: EditUserComponent},
+  {path: "userEditing", component: UserEditingComponent}
 ];
 
 @NgModule({
