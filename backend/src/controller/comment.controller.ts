@@ -11,13 +11,10 @@ export class CommentController {
                 console.log(err);
             }
             else if (comm.length==0) {
-                // console.log(comm);
                 TakenModel.find({ 'user': req.body.user._id, 'book': req.body.book._id  }, (err, books) => {
                     if (err) console.log(err);
                     else {
-                        // console.log(books);
                         if (books.length!=0){
-                            // console.log("can");
                             res.json({ "message": "true" });
                         }
                         else {
@@ -26,8 +23,6 @@ export class CommentController {
                     }})
 
             } else {
-                // console.log(comm);
-                // console.log("else can't");
                 res.json({ "message": "false" });
             }
         })
@@ -44,8 +39,6 @@ export class CommentController {
             grade: req.body.grade
         }
         let comment = new CommentModel(data);
-        //setujem sve polako
-        
         comment.save().then(resp=>{
             BookModel.updateOne({ '_id': req.body.book._id }, { $inc: { 'review': 1 } }, (err, user) => {
                 if (err) console.log(err);

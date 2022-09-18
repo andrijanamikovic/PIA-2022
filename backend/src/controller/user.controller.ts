@@ -1,7 +1,5 @@
 import express, { response } from "express"
-import { imageModel } from "../model/image";
 import { UserModel, ReviewModel } from "../model/user";
-import multer from "multer"
 
 export class UserController {
     login = (req: express.Request, res: express.Response) => {
@@ -14,89 +12,68 @@ export class UserController {
             else res.json(user);
         })
     }
-    //let user = new UserModel(req.body) samo ako su polja isto nazvana u bazi u body
     message: string;
     register = (req: express.Request, res: express.Response) => {
-       
+
         let user = new UserModel(req.body);
         console.log("files? ", req);
         //check if someone already have that username or email
-        UserModel.findOne({'username': user.username}, (err, user2) => {
-            if (err){
+        UserModel.findOne({ 'username': user.username }, (err, user2) => {
+            if (err) {
                 console.log(err);
-            } else if (user2){
-                res.json({"message":"username"})
+            } else if (user2) {
+                res.json({ "message": "username" })
             }
         })
 
-        UserModel.findOne({'email': user.username}, (err, user2) => {
-            if (err){
+        UserModel.findOne({ 'email': user.username }, (err, user2) => {
+            if (err) {
                 console.log(err);
-            } else if (user2){
-                res.json({"message":"email"})
+            } else if (user2) {
+                res.json({ "message": "email" })
             }
         })
-        // I don't need to save just to send admin to review 
-        
-        // var imgModel = new imageModel();
-        // var fs = require('fs');
-        // var path = require('path');
-        // var newImg = fs.readFileSync(req.body.photo);
-        // // encode the file as a base64 string.
-        // var encImg = newImg.toString('base64');
-        // // define your new document
-        // var newItem = {
-        //     description: req.body.description,
-        //     contentType: String,
-        //     size: req.body.photo.size,
-        //     img: new Buffer(encImg, 'base64')
-        // };
-    
-        // imgModel.insert(newItem)
-        //     .then(function() {
-        //         console.log('image inserted!');
-        //     });
-        
-        let review  = new ReviewModel(req.body);
 
-        // res.send('yo');
-        review.save().then(resp=>{
-            res.json({"message": "ok"});
-        }).catch(err=>{
+        let review = new ReviewModel(req.body);
+
+        review.save().then(resp => {
+            res.json({ "message": "ok" });
+        }).catch(err => {
             console.log(err);
-            res.json({"message": "ok"});
+            res.json({ "message": "ok" });
         })
     }
 
     changePassword = (req: express.Request, res: express.Response) => {
-        console.log(req.body.User.username);
-        console.log( req.body.newPassoword);
-
-        UserModel.updateOne({ 'username': req.body.User.username}, {$set: {'password': req.body.newPassoword}}, (err, user) => {
+        UserModel.updateOne({ 'username': req.body.User.username }, { $set: { 'password': req.body.newPassoword } }, (err, user) => {
             if (err) console.log(err);
-            else res.json({'message':'updated'});
+            else res.json({ 'message': 'updated' });
         })
     }
 
-    getAll = (req: express.Request, res: express.Response)=>{
-        UserModel.find({}, (err, news)=>{
+    getAll = (req: express.Request, res: express.Response) => {
+        UserModel.find({}, (err, news) => {
             if (err) console.log(err);
             else res.json(news);
         })
     }
 
     delete = (req: express.Request, res: express.Response) => {
-        UserModel.deleteOne({'username':req.body.username}, (err, userData)=>{
+        UserModel.deleteOne({ 'username': req.body.username }, (err, userData) => {
             if (err) console.log(err);
             else res.json("ok");
         })
     }
 
     edit = (req: express.Request, res: express.Response) => {
-        UserModel.updateOne({ 'username': req.body.username}, {$set: {'firstname': req.body.firstname ,'lastname': req.body.lastname,
-         'phone': req.body.phone, 'email': req.body.email,'address': req.body.address, 'photo':req.body.photo}}, (err, user) => {
+        UserModel.updateOne({ 'username': req.body.username }, {
+            $set: {
+                'firstname': req.body.firstname, 'lastname': req.body.lastname,
+                'phone': req.body.phone, 'email': req.body.email, 'address': req.body.address, 'photo': req.body.photo
+            }
+        }, (err, user) => {
             if (err) console.log(err);
-            else res.json({'message':'ok'});
+            else res.json({ 'message': 'ok' });
         })
     }
 

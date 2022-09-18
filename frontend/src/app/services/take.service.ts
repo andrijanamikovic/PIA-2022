@@ -17,16 +17,13 @@ export class TakeService {
     const data = {
       book:book,
       user:user,
-      // from: moment().format("MMM DD YY"),
       from:  Date.now(),
-      to: Date.now() + 12096e5, //mozda ne ovo
-      // to : moment().add(14, 'days').format("MMM DD YY"),
+      to: Date.now() + 12096e5, //mozda ne ovo 14 dana
       back: false,
       dateBack: 0
     }
     console.log("Take:  ");
     console.log(data);
-    // console.log(typeof(data.to));
     return this.http.post(`${this.uri}/book/take`, data);
 
   }

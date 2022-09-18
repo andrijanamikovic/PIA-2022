@@ -1,4 +1,4 @@
-<body>
+<body class="wrraper">
 <!-- search -->
 
 <!-- Load icon library -->
@@ -15,24 +15,27 @@
 <br/>
 <br/>
 <!-- books -->
-
+<table>
   <div id="large-th" *ngIf="!searched">
     <div class="day">
-        <h3>Book of the day</h3>
+        <th>Book of the day</th>
+        <th>Description</th>
         <br>
-        <div id="list-th"  ng-bind="bookOfTheDay">
-          <div class="book read">
+        <tr id="list-th"  ng-bind="bookOfTheDay">
+          <td class="book read">
             <div class="cover">
               <img  *ngIf = "hasPhoto(bookOfTheDay)" src={{bookOfTheDay.photo}} (click)= "showBook(bookOfTheDay)">
               <img  *ngIf = "!hasPhoto(bookOfTheDay)" src="../../assets/books/book.jpg" (click)= "showBook(bookOfTheDay)">
             </div>
+          </td>
+          <td>
             <div class="description">
               <p class="title">{{bookOfTheDay.title}}<br>
                 <span class="author">{{bookOfTheDay.author}}</span><br>
                 <span class="author">{{bookOfTheDay.score}}</span></p>
             </div>
-          </div>
-        </div>
+          </td>
+        </tr>
       <br/>
         <table>
           <!-- <h3>Borrowed books</h3> -->
@@ -71,7 +74,7 @@
        </table>
     </div>
   </div>
-  
+ </table> 
   <!--searched  -->
 <div id="large-th" *ngIf="searched">
     <div class="container-books">

@@ -1,35 +1,33 @@
 <body>
-<table class="logIn">
-    <tr>
-        <td class="name">Username: </td>
-        <td>
-            <input type="text" name = "username" [(ngModel)]="username">
-        </td>
-    </tr>
-    <tr>
-        <td class="name">Password: </td>
-        <td>
-            <input type="password" name = "password" [(ngModel)]="password">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <button (click)="login()">LogIn</button>
-        </td>
-    </tr>
-    <div class="register">
-        Click here to <a routerLink="/register"> REGISTER</a>
+    <table class="logIn">
+        <tr>
+            <td class="name">Username: </td>
+            <td>
+                <input type="text" name="username" [(ngModel)]="username">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">Password: </td>
+            <td>
+                <input type="password" name="password" [(ngModel)]="password">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button (click)="login()">LogIn</button>
+            </td>
+        </tr>
+        <div class="register">
+            Click here to <a routerLink="/register"> REGISTER</a>
+        </div>
+    </table>
+
+
+
+    <div *ngIf="message" class="error">
+        {{message}}
     </div>
-</table>
 
-
-
-<div *ngIf="message" class="error">
-    {{message}}
-</div>
-
-<br/>
-<br/>
+    <br />
+    <br />
 </body>
-
-

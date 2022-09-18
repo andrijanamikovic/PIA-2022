@@ -13,7 +13,6 @@ export class BooksController {
                 books.sort(function (a, b) {
                     return a.borrowed > b.borrowed;
                 });
-                // console.log(books);
                 res.json(books);
             }
         })
@@ -21,30 +20,28 @@ export class BooksController {
 
     take = (req: express.Request, res: express.Response) => {
         let taken = new TakenModel(req.body);
-        //da proverim da li ima vec tri uzete
         if (req.body.user.taken >= 3) {
             res.json({ "message": "3 taken" });
             return;
         }
-        TakenModel.find({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id }, (err, data) =>{
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'false', 'book': req.body.book._id }, (err, data) => {
             if (err) console.log(err);
             if (data.length != 0) {
-                // console.log("taken ", data);
                 res.json({ "message": "already taken" });
                 return;
             } else {
-            taken.save().then(resp => {
-                BookModel.updateOne({ '_id': req.body.book }, { $inc: { 'borrowed': 1 } }, (err, user) => {
-                    if (err) console.log(err);
+                taken.save().then(resp => {
+                    BookModel.updateOne({ '_id': req.body.book }, { $inc: { 'borrowed': 1 } }, (err, user) => {
+                        if (err) console.log(err);
+                    })
+                    UserModel.updateOne({ '_id': req.body.user }, { $inc: { 'taken': 1 } }, (err, user) => {
+                        if (err) console.log(err);
+                    })
+                    res.json({ "message": "ok" });
                 })
-                UserModel.updateOne({ '_id': req.body.user }, { $inc: { 'taken': 1 } }, (err, user) => {
-                    if (err) console.log(err);
-                })
-                res.json({ "message": "ok" });
-            })
             }
         }).clone();;
-            
+
     }
 
     borrowed = (req: express.Request, res: express.Response) => {
@@ -58,8 +55,6 @@ export class BooksController {
                 BookModel.find({ _id: { $in: id } }, (err, current) => {
                     if (err) console.log(err);
                     else {
-                        // console.log(current);
-                        //tu mogu da spakujem to i datum vracanja nekako 
                         res.json(current);
                     }
                 });
@@ -70,11 +65,9 @@ export class BooksController {
 
 
     taken = (req: express.Request, res: express.Response) => {
-        // console.log("taken");
         TakenModel.find({ 'user': req.body.user._id, 'back': 'false' }, (err, books) => {
             if (err) console.log(err);
             else {
-                // console.log(books);
                 res.json(books);
             }
         });
@@ -82,14 +75,12 @@ export class BooksController {
 
     back = (req: express.Request, res: express.Response) => {
         let now = Date.now();
-        TakenModel.updateOne({ 'user': req.body.user._id, 'back': 'false', 'book':  req.body.book._id } , { $set: { 'back': 'true' }}, (err, user) => {
+        TakenModel.updateOne({ 'user': req.body.user._id, 'back': 'false', 'book': req.body.book._id }, { $set: { 'back': 'true' } }, (err, user) => {
             if (err) console.log(err);
         });
-        TakenModel.updateOne({ 'user': req.body.user._id, 'book':  req.body.book._id } , { $set: { 'dateBack': now }}, (err, user) => {
+        TakenModel.updateOne({ 'user': req.body.user._id, 'book': req.body.book._id }, { $set: { 'dateBack': now } }, (err, user) => {
             if (err) console.log(err);
         });
-        // console.log("Nadjena knjiga koju ocu da izbacim...");
-       
         UserModel.updateOne({ '_id': req.body.user._id }, { $inc: { 'taken': -1 } }, (err, user) => {
             if (err) console.log(err);
         });
@@ -98,7 +89,7 @@ export class BooksController {
 
     returned = (req: express.Request, res: express.Response) => {
         let now = Date.now();
-        TakenModel.find({ 'user': req.body.user._id, 'back': 'true' },  (err, data) => {
+        TakenModel.find({ 'user': req.body.user._id, 'back': 'true' }, (err, data) => {
             if (err) console.log(err);
             else res.json(data);
         });
@@ -124,30 +115,32 @@ export class BooksController {
     }
 
     delete = (req: express.Request, res: express.Response) => {
-        BookModel.deleteOne({'_id':req.body._id}, (err, userData)=>{
+        BookModel.deleteOne({ '_id': req.body._id }, (err, userData) => {
             if (err) console.log(err);
             else res.json("ok");
         })
     }
 
     addBook = (req: express.Request, res: express.Response) => {
-
         let book = new BookModel(req.body);
-
-        book.save().then(resp=>{
-            res.json({"message": "ok"});
-        }).catch(err=>{
+        book.save().then(resp => {
+            res.json({ "message": "ok" });
+        }).catch(err => {
             console.log(err);
-            res.json({"message": "ok"});
+            res.json({ "message": "ok" });
         })
     }
 
     editBook = (req: express.Request, res: express.Response) => {
-        BookModel.updateOne({ '_id': req.body._id}, {$set: {'title': req.body.title ,'subtitle': req.body.subtitle,
-         'author': req.body.author, 'published': req.body.published,'publisher': req.body.publisher, 'photo':req.body.photo,
-         'genre': req.body.genre,'language': req.body.language, 'amount':req.body.amount}}, (err, user) => {
+        BookModel.updateOne({ '_id': req.body._id }, {
+            $set: {
+                'title': req.body.title, 'subtitle': req.body.subtitle,
+                'author': req.body.author, 'published': req.body.published, 'publisher': req.body.publisher, 'photo': req.body.photo,
+                'genre': req.body.genre, 'language': req.body.language, 'amount': req.body.amount
+            }
+        }, (err, user) => {
             if (err) console.log(err);
-            else res.json({'message':'ok'});
+            else res.json({ 'message': 'ok' });
         })
     }
 };

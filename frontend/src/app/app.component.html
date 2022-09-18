@@ -3,14 +3,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> -->
     <section class="p-menu1">
-        <a *ngIf = "isLogedIn()">
-          <img *ngIf = "hasPhoto(current)" src="{{current.photo}}" alt="..." class="img-avatar" (click)="goToProfile()">
-          <img *ngIf = "!hasPhoto(current)" src="../assets/avatars/avatar.png" alt="..." class="img-avatar" (click)="goToProfile()"
-          >
-        </a>
-        <nav id="navbar" class="navigation" role="navigation">
+        <nav id="navbar" class="navigation" role="navigation"  class="navbar navbar-expand-lg">
+          <a *ngIf = "isLogedIn()">
+            <img *ngIf = "hasPhoto(current)" src="{{current.photo}}" alt="..." class="img-avatar" (click)="goToProfile()">
+            <img *ngIf = "!hasPhoto(current)" src="../assets/avatars/avatar.png" alt="..." class="img-avatar" (click)="goToProfile()">
+          </a>
           <input id="toggle1" type="checkbox" />
           <label class="hamburger1" for="toggle1">
             <div class="top"></div>
@@ -20,19 +18,19 @@
         
           <nav class="menu1">
             <a class="link1" href="">Main page</a>
-            <a *ngIf=" isLogedIn()">
+            <a class="link1"  *ngIf=" isLogedIn()">
                 <a class="link1" href="">LogOut</a>
             </a>
-            <a *ngIf="isLogedIn()">
+            <a class="link1"  *ngIf="isLogedIn()">
                 <a  class="link1" (click) = 'showChangePassword()'>Change Password</a>
             </a>
-            <a *ngIf="isLogedIn()">
+            <a class="link1"  *ngIf="isLogedIn()">
               <a class="link1" (click) = 'back()'>Back</a>
             </a>
-            <a *ngIf="!isLogedIn()">
+            <a class="link1"  *ngIf="!isLogedIn()">
                 <a class="link1" href="/login">Log In</a>
             </a>
-            <a *ngIf="!isLogedIn()">
+            <a class="link1"  *ngIf="!isLogedIn()">
                 <a class="link1" href="/register">Register</a>
             </a>
         </nav>
@@ -48,9 +46,9 @@
 
 
 
-<!-- <body class="wrapper"> -->
+<body >
 <router-outlet></router-outlet>
-<!-- </body> -->
+</body>
 
 <!-- <div class="form-popup" id="myForm">
     <form class="form-container">

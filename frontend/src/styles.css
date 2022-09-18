@@ -1,7 +1,12 @@
 body {
+    overflow-x: hidden;  
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: #a9dce3;
     padding-top: 20px;
     padding-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .header{
@@ -27,14 +32,13 @@ body {
     /* top: 0; */
     bottom: 0;
     position: fixed;
-    margin-top: -20px;
+    /* margin-top: -40px; */
     height: 20px;
-    /* position: sticky; */
-    /* position: fixed; */
     width: 100%;    
     color: #7689de;   
     background-color: rgba(255,255,255,0.13);
-    padding: 30px 0;
+    padding-bottom: 20px;
+    /* margin-top: 40px; */
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
@@ -42,10 +46,5 @@ body {
     text-align: center;
     font-size: large;
     font-weight: bolder;
-    /* margin:0%;
-    margin-right: 0%;
-    margin-left: 0%;
-    margin-top: 50%; */
-    /* z-index:0; */
-    /* padding-top: 20%; */
+
 }
