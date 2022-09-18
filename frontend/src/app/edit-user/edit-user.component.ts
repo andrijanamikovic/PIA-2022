@@ -28,7 +28,6 @@ export class EditUserComponent implements OnInit {
 
 
   edit(user: User) {
-    console.log("Koji ti kurac???");
     localStorage.setItem('User',  JSON.stringify(user));
     this.router.navigate(['userEditing']);
   }
@@ -41,6 +40,32 @@ export class EditUserComponent implements OnInit {
         this.ngOnInit();
       } else {
         // this.message = 'not deleted';
+      }
+    })
+  }
+
+  block(user: User){
+    
+    this.userService.block(user, true).subscribe(resp=>{
+      if (resp['message'] == 'ok'){
+        this.users = [];
+        this.ngOnInit();
+      } else {
+        this.message = 'not blocked';
+      }
+    })
+  }
+
+  message:string;
+
+  Unblock(user: User){
+    
+    this.userService.block(user, false).subscribe(resp=>{
+      if (resp['message'] == 'ok'){
+        this.users = [];
+        this.ngOnInit();
+      } else {
+        this.message = 'not unblocked';
       }
     })
   }

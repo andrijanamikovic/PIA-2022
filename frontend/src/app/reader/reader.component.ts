@@ -105,8 +105,11 @@ export class ReaderComponent implements OnInit {
   }
 
   showBook(book: Book) {
-    console.log("I clicked on book: ");
-    console.log(book);
+    // console.log("I clicked on book: ");
+    // console.log(book);
+    if (this.current.blocked) {
+      return;
+    }
     localStorage.setItem('ClickedBook', book.title);
     localStorage.setItem('Book', JSON.stringify(book));
     this.router.navigate(['/book']);
@@ -157,6 +160,13 @@ export class ReaderComponent implements OnInit {
     else {
       return true;
     }
+  }
+
+  blocked(user: User){
+    if (user.blocked == null) {
+      return false;
+    }
+    return user.blocked;
   }
   
 }

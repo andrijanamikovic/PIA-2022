@@ -66,6 +66,7 @@ export class UserEditingComponent implements OnInit {
 
     this.newUser.photo = this.picture;
 
+    // console.log("user in edit: ", this.newUser);
     //calling saving edits
 
     this.userService.edit(this.newUser).subscribe(resp=>{
@@ -75,6 +76,13 @@ export class UserEditingComponent implements OnInit {
         this.message = 'Error in editing user';
       }
     })
+  }
+
+  getType(type) {
+    if (type == 0) {
+      return "reader";
+    } else 
+      return "moderator";
   }
 
 }

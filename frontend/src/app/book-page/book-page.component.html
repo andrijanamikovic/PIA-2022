@@ -22,7 +22,7 @@
         
         <!-- tu mu trebaju ispisani komentari -->
       </div>
-      <button *ngIf="clicked.amount-clicked.borrowed" (click)="borrow()">Take</button>
+      <button *ngIf="clicked.amount-clicked.borrowed && !blocked(current)" (click)="borrow()">Take</button>
       <br/>
       <button *ngIf="isModerator()" (click)="editData()">Edit data</button>
       <br/>

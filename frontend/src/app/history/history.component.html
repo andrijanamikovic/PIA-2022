@@ -40,7 +40,7 @@
                 <output type='file'>{{n.returned.toLocaleString('en-US')}}</output>
             </td>
             <td>
-                <button  (click) = 'showBook(n.book)'>Show book</button>
+                <button *ngIf = "!blocked(current)" (click) = 'showBook(n.book)'>Show book</button>
             </td>
         </tr>
     </tbody>

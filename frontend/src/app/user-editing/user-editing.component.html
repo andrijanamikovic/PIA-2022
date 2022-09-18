@@ -66,6 +66,22 @@
             </td>
         </tr>
         <tr>
+            <td>Change privilege:</td>
+            <td>
+                Old privilege:
+                <output type='text' name='address'>{{getType(user.type)}}</output>
+                <br />
+                New privilege:
+                <td>
+                    <label for="type">Select a type: </label>
+                    <select name="type" id="type" [(ngModel)]="newUser.type">
+                        <option value="0">Reader</option>
+                        <option value="2">Moderator</option>
+                    </select>
+                </td>
+                <br />
+        </tr>
+        <tr>
             <td colspan='2'>
                 <button (click)='submit()'>submit</button>
             </td>

@@ -69,7 +69,19 @@ export class UserController {
         UserModel.updateOne({ 'username': req.body.username }, {
             $set: {
                 'firstname': req.body.firstname, 'lastname': req.body.lastname,
-                'phone': req.body.phone, 'email': req.body.email, 'address': req.body.address, 'photo': req.body.photo
+                'phone': req.body.phone, 'email': req.body.email, 'address': req.body.address, 'photo': req.body.photo,
+                'type': req.body.type
+            }
+        }, (err, user) => {
+            if (err) console.log(err);
+            else res.json({ 'message': 'ok' });
+        })
+    }
+
+    block = (req: express.Request, res: express.Response) => {
+        UserModel.updateOne({ 'username': req.body.username }, {
+            $set: {
+                'blocked': req.body.block
             }
         }, (err, user) => {
             if (err) console.log(err);

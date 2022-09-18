@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-moderator',
@@ -12,17 +13,28 @@ export class ModeratorComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let current = JSON.parse(localStorage.getItem('currentUser'));
-    if (current == null) {
+    this.current = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.current == null) {
       this.router.navigate(['']);
     }
-    else if (current.type != 2) {
+    else if (this.current.type != 2) {
       this.router.navigate(['']);
     }
   }
 
+  current: User;
+
   addBook(){
+    if (this.current.blocked) {
+      return;
+    }
     this.router.navigate(['/addBook']);
   }
 
+  blocked(user: User){
+    if (user.blocked == null) {
+      return false;
+    }
+    return user.blocked;
+  }
 }

@@ -32,5 +32,9 @@ userRouter.route('/edit').post(
     (req, res)=> new UserController().edit(req, res)
 )
 
+userRouter.route('/block').post(
+    (req, res)=> new UserController().block(req, res)
+)
+
 
 export default userRouter;

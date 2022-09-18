@@ -117,4 +117,11 @@ export class BookPageComponent implements OnInit {
       return true;
     }
   }
+
+  blocked(user: User){
+    if (user.blocked == null) {
+      return false;
+    }
+    return user.blocked;
+  }
 }

@@ -41,6 +41,10 @@ let User = new Schema({
     },
     taken: {
         type: Number
+    },
+    blocked: {
+        type: Boolean,
+        // default: false
     }
 })
 

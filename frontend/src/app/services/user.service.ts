@@ -40,7 +40,8 @@ export class UserService {
       phone: phone,
       email: email,
       photo: photo,
-      taken: 0
+      taken: 0,
+      blocked: false
     }
     return this.http.post(`${this.uri}/users/register`, data);
 
@@ -90,5 +91,15 @@ export class UserService {
     }
 
     return this.http.post(`${this.uri}/users/edit`, data)
+  }
+
+  block(user, block){
+    const data = {
+      username: user.username,
+      block : block
+    }
+    console.log(data);
+
+    return this.http.post(`${this.uri}/users/block`, data)
   }
 }

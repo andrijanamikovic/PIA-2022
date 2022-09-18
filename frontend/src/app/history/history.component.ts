@@ -4,6 +4,7 @@ import { Book } from '../model/book';
 import { Returned } from '../model/returned';
 import { Taken } from '../model/taken';
 import { Took } from '../model/took';
+import { User } from '../model/user';
 import { MainService } from '../services/main.service';
 import { TakeService } from '../services/take.service';
 
@@ -17,18 +18,18 @@ export class HistoryComponent implements OnInit {
   constructor(private router: Router, private mainService: MainService, private takeService: TakeService) { }
 
   ngOnInit(): void {
-    let current = JSON.parse(localStorage.getItem('currentUser'));
-    if (current == null) {
+    this.current = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.current == null) {
       this.router.navigate(['']);
     }
-    if (current != null) {
-      this.takeService.getReturned(current).subscribe((data: Taken[]) => {
+    if (this.current != null) {
+      this.takeService.getReturned(this.current).subscribe((data: Taken[]) => {
         this.taken = data;
         console.log("returned data: ");
         console.log(data);
         //ovo treba da spojim sa tabelom za knjige da bih mogla da ispisem kako treba
         //preko onoga took kao u reader.ts
-          this.takeService.getReturnedBooks(current).subscribe((books: Book[]) => {
+          this.takeService.getReturnedBooks(this.current).subscribe((books: Book[]) => {
             this.returnedBooks = books;
             console.log("Returned books");
             console.log(this.returnedBooks);
@@ -58,7 +59,7 @@ export class HistoryComponent implements OnInit {
     }
   }
 
-
+  current:User;
   borrowed: Returned[] = [];
   returnedBooks: Book[] = [];
   taken: Taken[] = [];
@@ -98,6 +99,13 @@ export class HistoryComponent implements OnInit {
     })
     console.log("After sort: ");
     console.log(this.borrowed);
+  }
+
+  blocked(user: User){
+    if (user.blocked == null) {
+      return false;
+    }
+    return user.blocked;
   }
 
 }

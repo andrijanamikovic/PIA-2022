@@ -11,7 +11,10 @@
 </form>
 <br/>
 <br/>
-<button *ngIf="isModerator()" (click)="addNewBook()">Add new book</button>
+<button *ngIf="isModerator() && !blocked(current)" (click)="addNewBook()">Add new book</button>
+<br/>
+<br/>
+<h4 *ngIf="blocked(current)" >Blocked by admin</h4>
 <br/>
 <br/>
 <!-- books -->
@@ -66,7 +69,7 @@
                   </div>
                 </td>
                 <td>
-                  <button (click)="showBook(n.book)">About book</button>
+                  <button *ngIf = "!blocked(current)" (click)="showBook(n.book)">About book</button>
                   <button  (click)="giveBack(n.book)">Give back</button>
                 </td> 
               </tr>
