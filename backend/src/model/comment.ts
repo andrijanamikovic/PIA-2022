@@ -26,6 +26,9 @@ let comment = new Schema({
     grade: {
         type: Number,
         required: true
+    },
+    edited: {
+        type: Boolean
     }
 })
 

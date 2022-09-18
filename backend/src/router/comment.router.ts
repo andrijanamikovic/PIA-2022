@@ -20,5 +20,10 @@ commentRouter.route('/getAll').post(
 )
 
 
+commentRouter.route('/editComment').post(
+    (req, res)=> new CommentController().editComment(req, res)
+)
+
+
 
 export default commentRouter;

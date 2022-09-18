@@ -45,6 +45,9 @@ let User = new Schema({
     blocked: {
         type: Boolean,
         // default: false
+    },
+    extended :{
+        type: Boolean
     }
 })
 

@@ -43,13 +43,16 @@
     <div *ngFor="let n of comments">
       <ul class="hash-list cols-auto cols-1-xs pad-30-all align-center text-sm">
         <li class="comment">
-          <p class="fs-110 font-cond-l" contenteditable="false">Comment: {{n.comment}}</p>
+          <div *ngIf="n.edited"> <span>Edited</span> </div>
+          <p class="fs-110 font-cond-l" contenteditable="myComment(n)">Comment: {{n.comment}}</p>
+          <input *ngIf="myComment(n)" class="form-control" placeholder="Write an edit..." [(ngModel)]='comment'>
           <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">User: {{n.user}}</h5>
           <div>
-
             <ngb-rating [max]="10" [(rate)]="n.grade" [readonly]="true"></ngb-rating>
-
+            <br/>
+            <ngb-rating  *ngIf="myComment(n)" [max]="10" [(rate)]="grade" [readonly]="!myComment(n)"  [(ngModel)]='grade'></ngb-rating>
           </div>
+          <button *ngIf="myComment(n)" (click)="edit(n)">Edit</button>
           <!-- <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Grade: {{n.grade}}</small> -->
         </li>
       </ul>

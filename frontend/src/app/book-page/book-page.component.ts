@@ -89,7 +89,7 @@ export class BookPageComponent implements OnInit {
   }
 
   can: Boolean;
-  grade: Number;
+  grade: number;
   comment: string;
   canComment() {
     return this.can;
@@ -108,7 +108,27 @@ export class BookPageComponent implements OnInit {
 
   comments: Comment[] = [];
   hasComments: Boolean = false;
- 
+  
+  myComment(comm: Comment){
+    return comm.user == this.current.username;
+  }
+
+  edit(comm:Comment){
+    comm.comment = this.comment != undefined ? this.comment : comm.comment;
+    let old_grade = comm.grade;
+    comm.grade = this.grade != NaN ? this.grade : comm.grade;
+    comm.edited = true;
+    console.log("Edit comment: ", comm);
+    this.commentService.editComment(comm.comment, comm.grade, comm.user, comm.book, comm.edited, old_grade).subscribe(resp => {
+      if (resp['message'] == 'ok') {
+        this.can = false;
+        this.ngOnInit();
+      } else {
+        this.can = true;
+      }
+    })
+    console.log("Edit comment: ", comm);
+  }
   
   hasPhoto(user: Book){
     if (user.photo=="")

@@ -43,5 +43,9 @@ bookRouter.route('/edit').post(
     (req, res)=> new BooksController().editBook(req, res)
 )
 
+bookRouter.route('/extend').post(
+    (req, res)=> new BooksController().extend(req, res)
+)
+
 
 export default bookRouter;

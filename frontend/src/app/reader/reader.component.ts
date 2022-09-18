@@ -40,8 +40,8 @@ export class ReaderComponent implements OnInit {
     if (this.current != null) {
       this.takeService.getBorrowed(this.current).subscribe((data: Book[]) => {
         this.borrowedBooks = data;
-        console.log("Borrowed books");
-        console.log(this.borrowedBooks);
+        // console.log("Borrowed books");
+        // console.log(this.borrowedBooks);
         this.mainService.getDays().subscribe((data: Days)=>{
           this.days= data[0].days;
       this.takeService.taken(this.current).subscribe((data: Taken[]) => {
@@ -60,11 +60,11 @@ export class ReaderComponent implements OnInit {
             let now = Date.now();
             let diff = Math.floor((now - took.from) / (1000*60*60*24));
             console.log(diff);
-            diff =  this.days - diff;
+            diff =  this.days * (took.extended ? 2 : 1) - diff;
             if (diff<0) {
               localStorage.setItem('flag','false');
             }
-            this.borrowed.push(new Took(book,diff));
+            this.borrowed.push(new Took(book,diff, took.extended));
           }
         console.log("this borrowed books");
         console.log(this.borrowedBooks);
@@ -167,6 +167,19 @@ export class ReaderComponent implements OnInit {
       return false;
     }
     return user.blocked;
+  }
+
+  extend(book: Book) {
+    this.takeService.extend(book, this.current).subscribe((resp) => {
+      if (resp['message'] == 'ok') {
+        this.borrowedBooks = [];
+        this.borrowed = [];
+        this.taken = [];
+        this.ngOnInit();
+      } else {
+        //
+      }
+    })
   }
   
 }

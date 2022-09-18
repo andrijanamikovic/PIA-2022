@@ -143,4 +143,13 @@ export class BooksController {
             else res.json({ 'message': 'ok' });
         })
     }
+
+
+    extend = (req: express.Request, res: express.Response) => {
+        // console.log(req.body);
+        TakenModel.updateOne({ 'user': req.body.user._id, 'book':  req.body.book._id, 'back': false },{$set: {'extended': req.body.extended}}, (err, data) => {
+            if (err) console.log(err);
+            else res.json({'message': 'ok' });
+        });
+    }
 };

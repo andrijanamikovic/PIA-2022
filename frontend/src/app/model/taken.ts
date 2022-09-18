@@ -5,4 +5,5 @@ export class Taken {
       to: number;
       back: Boolean;
       dateBack:number;
+      extended: boolean;
 }

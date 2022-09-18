@@ -69,6 +69,7 @@
                   </div>
                 </td>
                 <td>
+                  <button *ngIf = "!n.extended && !blocked(current)" (click) = "extend(n.book)">Extend</button>
                   <button *ngIf = "!blocked(current)" (click)="showBook(n.book)">About book</button>
                   <button  (click)="giveBack(n.book)">Give back</button>
                 </td> 

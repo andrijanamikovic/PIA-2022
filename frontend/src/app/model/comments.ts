@@ -4,4 +4,5 @@ export class Comment {
     date: number;
     comment:string;
     grade: number;
+    edited: boolean;
 }

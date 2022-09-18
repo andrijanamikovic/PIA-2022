@@ -31,7 +31,12 @@ let taken = new Schema({
     dateBack: {
         type: Number,
         required: true
+    },
+    extended: {
+        type: Boolean,
+        required: true
     }
+
 })
 
 

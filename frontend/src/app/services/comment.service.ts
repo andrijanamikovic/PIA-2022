@@ -35,4 +35,17 @@ export class CommentService {
     }
     return this.http.post(`${this.uri}/comment/getAll`, data);
   }
+
+  
+  editComment(comment,grade, user, book, edited, old){
+    const data = {
+      user: user,
+      book: book,
+      comment: comment,
+      grade: grade,
+      edited: edited,
+      old:old
+    }
+    return this.http.post(`${this.uri}/comment/editComment`, data);
+  }
 }

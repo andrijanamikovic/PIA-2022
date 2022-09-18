@@ -62,4 +62,23 @@ export class CommentController {
             }
         })
     }
+
+    editComment = (req: express.Request, res: express.Response)=>{
+        // date: Date.now() cuvam kad je postavljen ne editovan
+        let newGrade = req.body.grade - req.body.old;
+        BookModel.updateOne({ '_id': req.body.book }, { $inc: { 'score': newGrade} }, (err, user) => {
+            if (err) console.log(err);
+        });
+
+        CommentModel.updateOne({ 'book': req.body.book, 'user': req.body.user}, {
+            $set: {
+                'comment': req.body.comment,
+                'grade': req.body.grade,
+                'edited': req.body.edited
+            }
+        }, (err, user) => {
+            if (err) console.log(err);
+            else res.json({ 'message': 'ok' });
+        })
+    }
 }

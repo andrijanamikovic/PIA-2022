@@ -20,7 +20,8 @@ export class TakeService {
       from:  Date.now(),
       to: Date.now() + 12096e5, //mozda ne ovo 14 dana
       back: false,
-      dateBack: 0
+      dateBack: 0,
+      extended: false
     }
     console.log("Take:  ");
     console.log(data);
@@ -63,6 +64,16 @@ export class TakeService {
         user: user
       }
       return this.http.post(`${this.uri}/book/returnedBooks`, data);
+    }
+
+    extend(book: Book, user: User){
+      const data = {
+        book:book,
+        user:user,
+        extended: true
+      }
+      return this.http.post(`${this.uri}/book/extend`, data);
+  
     }
 
 }
