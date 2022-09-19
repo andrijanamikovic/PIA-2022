@@ -7,6 +7,15 @@
 <!-- The form -->
 <form  #searchData = "ngForm" (ngSubmit) = "searchBook(searchData.value)" class="search">
   <input type="text" placeholder="Search.." name="search" ngModel>
+  <select multiple name="genre" id="type" [(ngModel)]="genres" >
+    <option value="romantic">Romantic</option>
+    <option value="education">Education</option>
+    <option value="science fiction">Science Fiction</option>
+    <option value="comedy">Comedy</option>
+    <option value="horror">Horror</option>
+    <option value="drama">Drama</option>
+    <option value="mystery">Mystery</option>
+</select>
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 <br/>
@@ -92,7 +101,9 @@
           </div>
           <div class="description">
             <p class="title">{{n.title}}<br>
-              <span class="author" >{{n.author}}</span></p>
+              <span class="author" >{{n.author}}</span><br/>
+              <span class="author" >{{n.genre}}</span>
+            </p>
           </div>
         </div>
       </div>

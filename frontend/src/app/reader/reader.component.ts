@@ -27,7 +27,7 @@ export class ReaderComponent implements OnInit {
     if (this.current == null) {
       this.router.navigate(['']);
     }
-    localStorage.setItem('flag','true');
+    localStorage.setItem('flag', 'true');
     this.mainService.getTop().subscribe((data: Book[]) => {
       this.books = data;
       let index;
@@ -42,40 +42,40 @@ export class ReaderComponent implements OnInit {
         this.borrowedBooks = data;
         // console.log("Borrowed books");
         // console.log(this.borrowedBooks);
-        this.mainService.getDays().subscribe((data: Days)=>{
-          this.days= data[0].days;
-      this.takeService.taken(this.current).subscribe((data: Taken[]) => {
-        this.taken = data;
-              //hocu da spojim knjigu sa vremenom
-      for (let i =0; i<=this.borrowedBooks.length; i++){
-        let book: Book;
-        book = this.borrowedBooks[i];
-        console.log("Book: ");
-        console.log(book);
-        // console.log(book);
-          for (let j= 0; j<this.taken.length; j++){
-            let took:Taken;
-            took = this.taken[j];
-          if (took.book == book._id) {
-            let now = Date.now();
-            let diff = Math.floor((now - took.from) / (1000*60*60*24));
-            console.log(diff);
-            diff =  this.days * (took.extended ? 2 : 1) - diff;
-            if (diff<0) {
-              localStorage.setItem('flag','false');
+        this.mainService.getDays().subscribe((data: Days) => {
+          this.days = data[0].days;
+          this.takeService.taken(this.current).subscribe((data: Taken[]) => {
+            this.taken = data;
+            //hocu da spojim knjigu sa vremenom
+            for (let i = 0; i <= this.borrowedBooks.length; i++) {
+              let book: Book;
+              book = this.borrowedBooks[i];
+              console.log("Book: ");
+              console.log(book);
+              // console.log(book);
+              for (let j = 0; j < this.taken.length; j++) {
+                let took: Taken;
+                took = this.taken[j];
+                if (took.book == book._id) {
+                  let now = Date.now();
+                  let diff = Math.floor((now - took.from) / (1000 * 60 * 60 * 24));
+                  console.log(diff);
+                  diff = this.days * (took.extended ? 2 : 1) - diff;
+                  if (diff < 0) {
+                    localStorage.setItem('flag', 'false');
+                  }
+                  this.borrowed.push(new Took(book, diff, took.extended));
+                }
+                console.log("this borrowed books");
+                console.log(this.borrowedBooks);
+              }
             }
-            this.borrowed.push(new Took(book,diff, took.extended));
-          }
-        console.log("this borrowed books");
-        console.log(this.borrowedBooks);
-      }
-    }
+          })
+        })
       })
-    })
-  })
+    }
   }
-  }
-
+  genres: string[];
   borrowed: Took[] = [];
   taken: Taken[] = [];
   books: Book[] = [];
@@ -91,17 +91,34 @@ export class ReaderComponent implements OnInit {
   searchBook(data) {
     //data.search mi je to sto treba da pretrazim delimicno kao authora ili kao naslov knjige
     this.searchedBooks = [];
-    if (data.search == "") {
+    console.log("Zanrovi: ", this.genres);
+    if (data.search == "" && this.genres == null) {
       this.searched = false;
       return;
     }
     this.books.forEach(book => {
       this.searched = true;
-      if (book.title.toLowerCase().match(data.search) != null || book.author.toLocaleLowerCase().match(data.search)) {
-        console.log(book);
-        this.searchedBooks.push(book);
+      //godini izdanja
+      if (data.search) {
+        if (book.title.toLowerCase().match(data.search) != null || book.author.toLocaleLowerCase().match(data.search) || book.publisher.toLowerCase().match(data.search) != null) {
+          // console.log(book);
+          this.searchedBooks.push(book);
+        } else {
+          if (book.genre in this.genres) {
+            this.searchedBooks.push(book);
+          }
+        }
+      }
+      else if (this.genres) {
+        this.genres.forEach(genre=>{
+          if (book.genre.toLowerCase() == genre.toLowerCase()) {
+            this.searchedBooks.push(book);
+          }
+        })
+       
       }
     })
+    console.log(this.searchedBooks);
   }
 
   showBook(book: Book) {
@@ -116,12 +133,12 @@ export class ReaderComponent implements OnInit {
   }
 
   borrowedBooks: Book[] = [];
- 
-  public getColor(balance: Number): string{
-    return balance > 0 ? "green" : "red";
- }
 
- giveBack(book: Book) {
+  public getColor(balance: Number): string {
+    return balance > 0 ? "green" : "red";
+  }
+
+  giveBack(book: Book) {
     this.takeService.giveBack(book).subscribe((data: Book[]) => {
       this.borrowed = [];
       // this.taken = null;
@@ -130,7 +147,7 @@ export class ReaderComponent implements OnInit {
   }
 
 
-  history(){
+  history() {
     this.router.navigate(['/history']);
   }
   isModerator() {
@@ -141,12 +158,12 @@ export class ReaderComponent implements OnInit {
     }
   }
 
-  addNewBook(){
+  addNewBook() {
     this.router.navigate(['/addBook']);
   }
 
   getDays() {
-    this.mainService.getDays().subscribe((data: Days)=>{
+    this.mainService.getDays().subscribe((data: Days) => {
       console.log("Dani su bez broja...");
       console.log(data[0].days);
       return data.days;
@@ -154,15 +171,15 @@ export class ReaderComponent implements OnInit {
     return 12;
   }
 
-  hasPhoto(user: Book){
-    if (user.photo=="")
+  hasPhoto(user: Book) {
+    if (user.photo == "")
       return false;
     else {
       return true;
     }
   }
 
-  blocked(user: User){
+  blocked(user: User) {
     if (user.blocked == null) {
       return false;
     }
@@ -181,5 +198,9 @@ export class ReaderComponent implements OnInit {
       }
     })
   }
-  
+
+
+  //
+
+
 }
