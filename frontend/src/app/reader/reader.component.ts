@@ -91,7 +91,7 @@ export class ReaderComponent implements OnInit {
   searchBook(data) {
     //data.search mi je to sto treba da pretrazim delimicno kao authora ili kao naslov knjige
     this.searchedBooks = [];
-    console.log("Zanrovi: ", this.genres);
+    // console.log("Zanrovi: ", this.genres);
     if (data.search == "" && this.genres == null) {
       this.searched = false;
       return;
@@ -100,12 +100,26 @@ export class ReaderComponent implements OnInit {
       this.searched = true;
       //godini izdanja
       if (data.search) {
+        console.log("Datum: ", new Date(book.published).getFullYear());
         if (book.title.toLowerCase().match(data.search) != null || book.author.toLocaleLowerCase().match(data.search) || book.publisher.toLowerCase().match(data.search) != null) {
           // console.log(book);
           this.searchedBooks.push(book);
         } else {
-          if (book.genre in this.genres) {
-            this.searchedBooks.push(book);
+          if (this.genres){
+            if (book.genre in this.genres) {
+              this.searchedBooks.push(book);
+            }
+          } else {
+            let dates = data.search.toLowerCase().split('-');
+            if (dates[0] && dates[1]) {
+              if (new Date(book.published).getFullYear()>=dates[0] && new Date(book.published).getFullYear()<=dates[1]){
+                this.searchedBooks.push(book);
+              }
+            } else if (dates[0]) {
+              if (new Date(book.published).getFullYear()==dates[0]) {
+                this.searchedBooks.push(book);
+              }
+            }
           }
         }
       }
