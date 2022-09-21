@@ -22,6 +22,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserEditingComponent } from './user-editing/user-editing.component';
+import { BookRequestsComponent } from './book-requests/book-requests.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserEditingComponent } from './user-editing/user-editing.component';
     AddBookComponent,
     EditUserComponent,
     EditBookComponent,
-    UserEditingComponent
+    UserEditingComponent,
+    BookRequestsComponent
   ],
   imports: [
     BrowserModule,

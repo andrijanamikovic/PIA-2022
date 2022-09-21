@@ -48,4 +48,20 @@ bookRouter.route('/extend').post(
 )
 
 
+bookRouter.route('/addBookUser').post(
+    (req, res)=> new BooksController().addBookUser(req, res)
+)
+
+bookRouter.route('/paddingRequest').get(
+    (req, res)=> new BooksController().getAllPadding(req, res)
+)
+
+bookRouter.route('/approve').post(
+    (req, res)=> new BooksController().approve(req, res)
+)
+
+bookRouter.route('/decline').post(
+    (req, res)=> new BooksController().decline(req, res)
+)
+
 export default bookRouter;

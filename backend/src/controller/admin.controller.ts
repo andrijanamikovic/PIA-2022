@@ -43,7 +43,7 @@ export class AdminController {
         let username = req.body.username;
         ReviewModel.deleteOne({ 'username': username }, (err, userData) => {
             if (err) console.log(err);
-            else res.json(userData);
+            else res.json({ "message": "ok" });
         })
     }
 

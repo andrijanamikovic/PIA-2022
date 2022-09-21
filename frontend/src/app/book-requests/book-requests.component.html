@@ -1,0 +1,55 @@
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Author</th>
+                <th>Photo</th>
+                <th>Published</th>
+                <th>Publisher</th>
+                <th>Language</th>
+                <th>Genre</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let n of allRequests">
+                <td>
+                    <output type='text' name='title' value="n.title">{{n.title}}</output>
+                </td>
+                <td>
+                    <output type='text' name='subtitle'>{{n.subtitle}}</output>
+                </td>
+                <td>
+                    <output type='text' name='author'>{{n.author}}</output>
+                </td>
+                <td>
+                    <img *ngIf="hasPhoto(n)" src={{n.photo}} width="100px" height="100px">
+                    <img *ngIf="!hasPhoto(n)" src="../../assets/books/book.jpg" width="100px" height="100px">
+                </td>
+                <td>
+                    <output type='text' name='published'>{{n.published}}</output>
+                </td>
+                <td>
+                    <output type='publisher' name='Phone'>{{n.publisher}}</output>
+                </td>
+                <td>
+                    <output type='genre' name='Address'>{{n.genre}}</output>
+                </td>
+                <td>
+                    <output type='genre' name='language'>{{n.language}}</output>
+                </td>
+                <td>
+                    <output type='genre' name='user'>{{n.user}}</output>
+                </td>
+                <td colspan="3">
+                    <button (click)='approve(n._id)'>Approve</button>
+                </td>
+                <td colspan="3">
+                    <button (click)='decline(n._id)'>Decline</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   

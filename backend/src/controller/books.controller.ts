@@ -1,7 +1,8 @@
 import express, { response } from "express"
 import { TakenModel } from "../model/taken";
-import { BookModel } from "../model/book";
+import { BookModel} from "../model/book";
 import { UserModel } from "../model/user";
+import { ReviewBookModel } from "../model/booksRewie";
 
 
 export class BooksController {
@@ -152,4 +153,63 @@ export class BooksController {
             else res.json({'message': 'ok' });
         });
     }
+
+    addBookUser = (req: express.Request, res: express.Response) => {
+        let book = new ReviewBookModel(req.body);
+        book.save().then(resp => {
+            res.json({ "message": "ok" });
+        }).catch(err => {
+            console.log(err);
+            res.json({ "message": "ok" });
+        })
+    }
+
+
+    getAllPadding = (req: express.Request, res: express.Response) => {
+        ReviewBookModel.find({}, (err, news) => {
+            if (err) console.log(err);
+            else {
+                // console.log(news);
+                res.json(news);
+            }
+        })
+    }
+
+    approve = (req: express.Request, res: express.Response) => {
+        ReviewBookModel.findOne({ '_id': req.body._id }, (err, bookData) => {
+            if (err) console.log(err);
+            else {
+                let book = new BookModel();
+                book.title = bookData.title;
+                book.subtitle = bookData.subtitle;
+                book.author = bookData.author;
+                book.published = bookData.published;
+                book.publisher = bookData.publisher;
+                book.genre = bookData.genre;
+                book.language = bookData.language;
+                book.borrowed = bookData.borrowed;
+                book.amount = bookData.amount;
+                book.review = bookData.review;
+                book.photo = bookData.photo;
+
+                book.save().then(resp => {
+                    ReviewBookModel.deleteOne({ '_id': req.body._id }, (err, userData) => {
+                        if (err) console.log(err);
+                    })
+                    res.json({ "message": "ok" });
+                }).catch(err => {
+                    console.log(err);
+                    res.json({ "message": "ok" });
+                })
+            }
+        })
+    }
+
+    decline = (req: express.Request, res: express.Response) => {
+        ReviewBookModel.deleteOne({ '_id': req.body._id}, (err, userData) => {
+            if (err) console.log(err);
+            else res.json({ "message": "ok" });
+        })
+    }
+
 };

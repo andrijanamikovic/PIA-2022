@@ -147,6 +147,10 @@ export class ReaderComponent implements OnInit {
   }
 
   borrowedBooks: Book[] = [];
+  noBorrowedBooks(){
+    // console.log("Pozamljene: ", this.borrowed);
+    return this.borrowed.length == 0;
+  }
 
   public getColor(balance: Number): string {
     return balance > 0 ? "green" : "red";
@@ -213,7 +217,14 @@ export class ReaderComponent implements OnInit {
     })
   }
 
+  
+  addBook(){
+    this.router.navigate(['/addBook']);
+  }
 
+  bookRequests(){
+    this.router.navigate(['bookRequests']);
+  }
   //
 
 

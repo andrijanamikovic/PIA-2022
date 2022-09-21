@@ -5,6 +5,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminComponent } from './admin/admin.component';
 import { BookEditingComponent } from './book-editing/book-editing.component';
 import { BookPageComponent } from './book-page/book-page.component';
+import { BookRequestsComponent } from './book-requests/book-requests.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: "addBook", component: AddBookComponent},
   {path: "adminEditBooks", component: EditBookComponent},
   {path: "adminEditUsers", component: EditUserComponent},
-  {path: "userEditing", component: UserEditingComponent}
+  {path: "userEditing", component: UserEditingComponent},
+  {path:"bookRequests", component: BookRequestsComponent}
 ];
 
 @NgModule({

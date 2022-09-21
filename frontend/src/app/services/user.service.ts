@@ -1,5 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Book } from '../model/book';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -101,5 +103,42 @@ export class UserService {
     console.log(data);
 
     return this.http.post(`${this.uri}/users/block`, data)
+  }
+
+  addBook(book: Book, current: User){
+    // console.log(book);
+    const data = {
+      user: current.username,
+      title: book.title,
+      subtitle: book.subtitle,
+      author: book.author,
+      published: book.published,
+      publisher: book.publisher,
+      genre: book.genre,
+      language: book.language,
+      amount: book.amount,
+      photo:book.photo
+    }
+    return this.http.post(`${this.uri}/book/addBookUser`, data);
+
+  }
+
+  getAllPadding(){
+    return this.http.get(`${this.uri}/book/paddingRequest`);
+  }
+
+  approve(_id){
+    const data = {
+      _id: _id
+    }
+    return this.http.post(`${this.uri}/book/approve`, data);
+   
+  }
+
+  decline(_id){
+    const data = {
+      _id: _id
+    }
+    return this.http.post(`${this.uri}/book/decline`, data);
   }
 }

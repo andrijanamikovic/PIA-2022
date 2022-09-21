@@ -87,9 +87,12 @@
        </table>
     </div>
   </div>
+  <div *ngIf="noBorrowedBooks()">
+    <h1>No borrowed books</h1>
+  </div>
  </table> 
   <!--searched  -->
-<div id="large-th" *ngIf="searched">
+<div  id="list-th"   *ngIf="searched">
     <div class="container-books">
       <h1>Searched books</h1>
       <br>
@@ -109,8 +112,10 @@
       </div>
     </div>
   </div>
-  
-  <button (click) = 'history()'>History</button>
-  
-
 </body>
+  <body>
+  <button (click) = 'history()'>History</button>
+  <button *ngIf="!isModerator() && !blocked(current)" (click)="addBook()">Request a new book</button>
+  <button *ngIf="isModerator() && !blocked(current)" (click)="bookRequests()">See book requests</button>
+  </body>
+

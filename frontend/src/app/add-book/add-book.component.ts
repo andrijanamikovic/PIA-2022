@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../model/book';
+import { User } from '../model/user';
 import { AdminService } from '../services/admin.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-add-book',
@@ -10,24 +12,25 @@ import { AdminService } from '../services/admin.service';
 })
 export class AddBookComponent implements OnInit {
 
-  constructor(private router: Router, private adminService: AdminService) { }
+  constructor(private router: Router, private adminService: AdminService, private userService: UserService) { }
 
   ngOnInit(): void {
-    let current = JSON.parse(localStorage.getItem('currentUser'));
-    if (current == null) {
+    this.current = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.current == null) {
       this.router.navigate(['']);
     }
-    else if (current.type == 0) {
-      this.router.navigate(['']);
-    }
+    // else if (this.current.type == 0   || this.current.type == 1) {
+    //   this.router.navigate(['']);
+    // }
   }
 
   newBook: Book = new Book();
   picture: string;
   message:string;
+  current: User;
 
   submit(){
-    if (!this.picture ||this.picture.length == 0){
+    if (!this.picture || this.picture.length == 0){
       this.newBook.photo="";
      
     }  else {
@@ -35,13 +38,24 @@ export class AddBookComponent implements OnInit {
     }
     //call adding a new book
     // console.log("New book: ", this.newBook);
-    this.adminService.addBook(this.newBook).subscribe(resp=>{
-      if (resp['message'] == 'ok'){
-        this.message = 'Book added';
-      } else {
-        this.message = 'Error in adding book';
-      }
-    })
+    console.log(this.current.type);
+    if (this.current.type != 0){
+      this.adminService.addBook(this.newBook).subscribe(resp=>{
+        if (resp['message'] == 'ok'){
+          this.message = 'Book added';
+        } else {
+          this.message = 'Error in adding book';
+        }
+      })
+    } else {
+      this.userService.addBook(this.newBook, this.current).subscribe(resp=>{
+        if (resp['message'] == 'ok'){
+          this.message = 'Request for a new book send for review';
+        } else {
+          this.message = 'Error';
+        }
+      })
+    }
   }
 
   saveImage(event){

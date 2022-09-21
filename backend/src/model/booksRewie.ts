@@ -2,7 +2,10 @@ import mongoose, { model } from "mongoose";
 
 const Schema = mongoose.Schema;
 
-let Book = new Schema({
+let BookReview = new Schema({
+    user: {
+        type:String
+    },
     title:{
         type: String,
         required: true
@@ -51,7 +54,7 @@ let Book = new Schema({
     }
 })
 
-const BookModel =mongoose.model('BookModel', Book, 'books');
-// const ReviewBookModel =mongoose.model('BookModel', Book, 'reviewBooks');
+// const BookModel =mongoose.model('BookModel', Book, 'books');
+const ReviewBookModel =mongoose.model('BookReview', BookReview, 'reviewBooks');
 
-export  { BookModel};
+export  { ReviewBookModel };

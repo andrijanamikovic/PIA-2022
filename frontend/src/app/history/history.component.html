@@ -41,6 +41,7 @@
             </td>
             <td>
                 <button *ngIf = "!blocked(current)" (click) = 'showBook(n.book)'>Show book</button>
+                <output *ngIf = "blocked(current)">Blocked user</output>
             </td>
         </tr>
     </tbody>
