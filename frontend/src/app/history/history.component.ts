@@ -108,4 +108,7 @@ export class HistoryComponent implements OnInit {
     return user.blocked;
   }
 
+  convertDate(date:Date){
+    return new Date(date);
+  }
 }

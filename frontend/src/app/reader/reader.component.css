@@ -47,7 +47,7 @@ ul {
  .book {
    display: inline-block;
    float: left;
-   width: 90px;
+   width: 100px;
    max-height: 100px;
    box-shadow: 0 0 20px #aaa;
    margin: 25px;

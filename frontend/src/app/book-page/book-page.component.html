@@ -13,7 +13,6 @@
                 <span class="author">{{clicked.author}}</span><br>
                 <span class="author">Left: {{clicked.amount-clicked.borrowed}}</span><br>
                 <span class="author">Score: {{clicked.score!=0?clicked.score/clicked.review:null}}</span></p> 
-                <!-- umesto ocene iz knjige ja treba da racunam prosecnu u odnosu na komentare -->
             </div>
           </div>
         </div>
@@ -45,6 +44,7 @@
         <li class="comment">
           <div *ngIf="n.edited"> <span>Edited</span> </div>
           <p class="fs-110 font-cond-l" contenteditable="myComment(n)">Comment: {{n.comment}}</p>
+          <output type='text'>Date: {{convertDate(n.date)}}</output>
           <input *ngIf="myComment(n)" class="form-control" placeholder="Write an edit..." [(ngModel)]='comment'>
           <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">User: {{n.user}}</h5>
           <div>

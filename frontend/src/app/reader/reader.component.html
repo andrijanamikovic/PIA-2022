@@ -91,27 +91,22 @@
     <h1>No borrowed books</h1>
   </div>
  </table> 
-  <!--searched  -->
-<div  id="list-th"   *ngIf="searched">
-    <div class="container-books">
-      <h1>Searched books</h1>
-      <br>
-      <div id="list-th" *ngFor="let n of searchedBooks">
-        <div class="book read">
-          <div class="cover">
-            <img  *ngIf = "hasPhoto(n)" src={{n.photo}} (click)= "showBook(n)">
-            <img  *ngIf = "!hasPhoto(n)" src="../../assets/books/book.jpg" (click)= "showBook(n)">
-          </div>
-          <div class="description">
-            <p class="title">{{n.title}}<br>
-              <span class="author" >{{n.author}}</span><br/>
-              <span class="author" >{{n.genre}}</span>
-            </p>
-          </div>
-        </div>
-      </div>
+
+<div *ngIf="searched" class="card-deck">
+  <div class="card border-0  bg-transparent" *ngFor="let n of searchedBooks">
+    <img class="card-img-top" *ngIf = "hasPhoto(n)" src={{n.photo}} (click)= "showBook(n)" alt="Card image cap" style="width: 5rem; height: 5rem;">
+    <img class="card-img-top" *ngIf = "!hasPhoto(n)" src="../../assets/books/book.jpg" (click)= "showBook(n)" alt="Card image cap" style="width: 5rem; height: 5rem;">
+    <div class="card-body">
+      <p class="card-text">
+          {{n.title}}<br>
+          <span class="author" >{{n.author}}</span><br/>
+          <span class="author" >{{n.genre}}</span>
+      </p>
     </div>
   </div>
+</div>
+
+
 </body>
   <body>
   <button (click) = 'history()'>History</button>

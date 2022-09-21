@@ -55,7 +55,7 @@ ul {
  .book-searched {
   display: inline-block;
   float: left;
-  width: 90px;
+  width: 100px;
   max-height: 100px;
   box-shadow: 0 0 20px #aaa;
   margin: 25px;
@@ -96,18 +96,37 @@ ul {
    .container {
      max-width: 700px;
    }
-   .book {
+   .book-searched {
      margin: 49px;
    }
  }
  @media (max-width: 730px) {
-   .book {
+   .book-searched {
      display: block;
      margin: 0 auto;
      margin-top: 50px;
    }
  }
  
+ @media (max-width: 941px) {
+  .container {
+    max-width: 700px;
+    margin-right: 40px;
+
+  }
+  .book {
+    margin: 49px;
+    margin-right: 40px;
+  }
+}
+@media (max-width: 730px) {
+  .book {
+    display: block;
+    margin: 0 auto;
+    margin-right: 40px;
+    margin-top: 50px;
+  }
+}
  /*********************************
  other
  **********************************/

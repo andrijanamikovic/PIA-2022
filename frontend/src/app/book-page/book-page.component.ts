@@ -43,7 +43,7 @@ export class BookPageComponent implements OnInit {
             }
             console.log(comm);
             this.comments.sort((a, b) => {
-              return a.date > b.date ? 1 : -1;
+              return a.date > b.date ? -1 : 1;
             })
           })
         }
@@ -143,5 +143,9 @@ export class BookPageComponent implements OnInit {
       return false;
     }
     return user.blocked;
+  }
+
+  convertDate(date : number){
+    return  new Date(date).toLocaleString('en-US');
   }
 }
